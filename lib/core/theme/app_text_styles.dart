@@ -53,52 +53,24 @@ abstract final class AppTextStyles {
 
   // Badges & Pills
   static TextStyle brandPill = GoogleFonts.plusJakartaSans(
-    fontSize: 11,
-    fontWeight: FontWeight.w700,
-    height: 16 / 11,
-    letterSpacing: 0.55,
-    color: AppColors.primaryDark,
+    fontSize: 11, fontWeight: FontWeight.w700, height: 16 / 11, letterSpacing: 0.55, color: AppColors.primaryDark,
   );
-
   static TextStyle liveBadge = GoogleFonts.plusJakartaSans(
-    fontSize: 11,
-    fontWeight: FontWeight.w700,
-    height: 16 / 11,
-    letterSpacing: 0.66,
-    color: AppColors.textSecondary,
+    fontSize: 11, fontWeight: FontWeight.w700, height: 16 / 11, letterSpacing: 0.66, color: AppColors.textSecondary,
   );
-
   static TextStyle trustBadge = GoogleFonts.plusJakartaSans(
-    fontSize: 11,
-    fontWeight: FontWeight.w700,
-    height: 14 / 11,
-    letterSpacing: 0.55,
-    color: AppColors.textSecondary,
+    fontSize: 11, fontWeight: FontWeight.w700, height: 14 / 11, letterSpacing: 0.55, color: AppColors.textSecondary,
   );
 
   // Buttons & Links
   static TextStyle buttonPrimary = GoogleFonts.plusJakartaSans(
-    fontSize: 14,
-    fontWeight: FontWeight.w600,
-    height: 20 / 14,
-    letterSpacing: 0.14,
-    color: AppColors.textWhite,
+    fontSize: 14, fontWeight: FontWeight.w600, height: 20 / 14, letterSpacing: 0.14, color: AppColors.textWhite,
   );
-
   static TextStyle textLink = GoogleFonts.plusJakartaSans(
-    fontSize: 12,
-    fontWeight: FontWeight.w600,
-    height: 16 / 12,
-    letterSpacing: 0.24,
-    color: AppColors.primary,
+    fontSize: 12, fontWeight: FontWeight.w600, height: 16 / 12, letterSpacing: 0.24, color: AppColors.primary,
     decoration: TextDecoration.underline,
   );
-
   static TextStyle legalText = GoogleFonts.plusJakartaSans(
-    fontSize: 13,
-    fontWeight: FontWeight.w400,
-    height: 16.25 / 13,
-    letterSpacing: 0.065,
-    color: AppColors.textSecondary,
+    fontSize: 13, fontWeight: FontWeight.w400, height: 16.25 / 13, letterSpacing: 0.065, color: AppColors.textSecondary,
   );
 }

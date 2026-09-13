@@ -25,7 +25,7 @@ class PrimaryButton extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 48,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: AppColors.buttonPrimary,
         borderRadius: AppRadii.roundedMd,
         boxShadow: AppShadows.primaryButton,
@@ -51,7 +51,14 @@ class PrimaryButton extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(label, style: AppTextStyles.buttonPrimary),
+                      Flexible(
+                        child: Text(
+                          label,
+                          style: AppTextStyles.buttonPrimary,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      ),
                       AppSpacing.horizontalSm,
                       SvgPicture.asset(
                         AppAssets.icArrowForward,

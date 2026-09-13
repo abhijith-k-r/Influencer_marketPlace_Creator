@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/constants/app_routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../bloc/signup_bloc.dart';
+import '../bloc/signup_state.dart';
 import '../widgets/bento_perks_row.dart';
 import '../widgets/community_proof_footer.dart';
 import '../widgets/signup_ambient_background.dart';
@@ -20,30 +22,38 @@ class SignupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => SignupBloc(),
-      child: Scaffold(
-        backgroundColor: AppColors.scaffoldBackground,
-        body: SignupAmbientBackground(
-          child: Center(
-            child: SingleChildScrollView(
-              padding: AppSpacing.paddingScreen,
-              child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: 420),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SignupHeaderSection(),
-                    AppSpacing.verticalLg,
-                    TopCreatorsTeaserCard(),
-                    AppSpacing.verticalLg,
-                    SignupCard(child: SignupFormFields()),
-                    AppSpacing.verticalLg,
-                    TrustIndicatorsBar(),
-                    AppSpacing.verticalLg,
-                    BentoPerksRow(),
-                    AppSpacing.verticalLg,
-                    CommunityProofFooter(),
-                    AppSpacing.verticalXl,
-                  ],
+      child: BlocListener<SignupBloc, SignupState>(
+        listenWhen: (previous, current) => previous.status != current.status,
+        listener: (context, state) {
+          if (state.status == SignupStatus.success) {
+            Navigator.pushReplacementNamed(context, AppRoutes.onboardingStep1);
+          }
+        },
+        child: Scaffold(
+          backgroundColor: AppColors.scaffoldBackground,
+          body: SignupAmbientBackground(
+            child: Center(
+              child: SingleChildScrollView(
+                padding: AppSpacing.paddingScreen,
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 420),
+                  child: const Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SignupHeaderSection(),
+                      AppSpacing.verticalLg,
+                      TopCreatorsTeaserCard(),
+                      AppSpacing.verticalLg,
+                      SignupCard(child: SignupFormFields()),
+                      AppSpacing.verticalLg,
+                      TrustIndicatorsBar(),
+                      AppSpacing.verticalLg,
+                      BentoPerksRow(),
+                      AppSpacing.verticalLg,
+                      CommunityProofFooter(),
+                      AppSpacing.verticalXl,
+                    ],
+                  ),
                 ),
               ),
             ),

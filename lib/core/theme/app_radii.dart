@@ -18,6 +18,10 @@ abstract final class AppRadii {
     Radius.circular(pill),
   );
 
+  // Contextual aliases
+  static const BorderRadius roundedCard = roundedMd;
+  static const BorderRadius roundedInput = roundedMd;
+
   // Top Only Radii (e.g., Accent line / Modal sheets)
   static const BorderRadius roundedTopLg = BorderRadius.only(
     topLeft: Radius.circular(lg),

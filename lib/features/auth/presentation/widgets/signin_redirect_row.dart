@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/constants/app_routes.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
@@ -17,7 +18,9 @@ class SigninRedirectRow extends StatelessWidget {
       children: [
         Text(AppStrings.alreadyHaveAccount, style: AppTextStyles.body),
         GestureDetector(
-          onTap: onSignInTap,
+          onTap:
+              onSignInTap ??
+              () => Navigator.pushNamed(context, AppRoutes.signin),
           child: Text(
             AppStrings.signIn,
             style: AppTextStyles.textLink.copyWith(

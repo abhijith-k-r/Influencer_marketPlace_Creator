@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:creator_side/main.dart';
+import 'package:creator_side/core/constants/app_routes.dart';
 import 'package:creator_side/core/constants/app_strings.dart';
 import 'package:creator_side/features/home/presentation/views/main_navigation_shell.dart';
 import 'package:creator_side/features/onboarding/presentation/views/step1_basics_view.dart';
@@ -9,6 +10,9 @@ import 'package:creator_side/features/onboarding/presentation/views/step3_social
 import 'package:creator_side/features/onboarding/presentation/views/step4_portfolio_view.dart';
 import 'package:creator_side/features/onboarding/presentation/views/step5_review_view.dart';
 import 'package:creator_side/features/onboarding/presentation/views/verification_status_view.dart';
+import 'package:creator_side/features/messages/presentation/views/creator_message_screen.dart';
+import 'package:creator_side/features/payments/presentation/views/payments_screen.dart';
+import 'package:creator_side/features/payments/presentation/views/request_payment_screen.dart';
 
 void main() {
   testWidgets('SignupScreen renders and navigates to Sign In', (tester) async {
@@ -85,5 +89,72 @@ void main() {
     await tester.pump();
     expect(find.text('Good morning, Alex 👋'), findsOneWidget);
     expect(find.text('Marketplace Pulse'), findsOneWidget);
+  });
+
+  testWidgets('MessagesInboxScreen renders active threads and navigates to chat', (tester) async {
+    await tester.pumpWidget(const MaterialApp(home: MainNavigationShell()));
+    await tester.pump();
+
+    // Tap on Messages tab (3rd item in bottom bar)
+    await tester.tap(find.text('Messages'));
+    await tester.pump(const Duration(milliseconds: 300));
+
+    // Verify inbox headers and cards
+    expect(find.text('3 Unread'), findsOneWidget);
+    expect(find.text('Active Campaign Threads'), findsOneWidget);
+    expect(find.text('Sony Audio Innovations'), findsOneWidget);
+    expect(find.text('Notion HQ'), findsOneWidget);
+    expect(find.text('Nordic Watch Co.'), findsOneWidget);
+    expect(find.text('Brand Inbound Requests'), findsOneWidget);
+    expect(find.text('Anker Soundcore'), findsOneWidget);
+
+    // Tap Sony Audio Innovations deal card
+    await tester.ensureVisible(find.text('Sony Audio Innovations'));
+    await tester.tap(find.text('Sony Audio Innovations'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+
+    // Verify chat screen is open
+    expect(find.byType(CreatorMessageScreen), findsOneWidget);
+
+    // Tap back button in chat header
+    await tester.tap(find.byIcon(Icons.arrow_back_ios_new_rounded));
+    await tester.pump(const Duration(milliseconds: 300));
+
+    // Verify we are back on the inbox
+    expect(find.text('Active Campaign Threads'), findsOneWidget);
+  });
+
+  testWidgets('PaymentsScreen renders escrow guarantee and milestone disbursements', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: const PaymentsScreen(),
+        routes: {
+          AppRoutes.requestPayment: (_) => const RequestPaymentScreen(),
+        },
+      ),
+    );
+    await tester.pump();
+
+    // Verify header & escrow components
+    expect(find.text('Payment Agreement'), findsOneWidget);
+    expect(find.text('100% FULLY FUNDED'), findsOneWidget);
+    expect(find.text('Net Creator Payout'), findsOneWidget);
+    expect(find.text('₹26,100'), findsOneWidget);
+    expect(find.text('Milestone Disbursements'), findsOneWidget);
+
+    // Verify milestone stages
+    expect(find.text('Initial Signing Advance'), findsOneWidget);
+    expect(find.text('50K Views Performance Bonus'), findsOneWidget);
+
+    // Tap the ready milestone to navigate to request payout screen
+    await tester.ensureVisible(find.text('50K Views Performance Bonus'));
+    await tester.tap(find.text('50K Views Performance Bonus'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+
+    expect(find.byType(RequestPaymentScreen), findsOneWidget);
+    expect(find.text('Claim Payout'), findsOneWidget);
+    expect(find.text('Live Telemetry Audit'), findsOneWidget);
   });
 }

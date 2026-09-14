@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_radii.dart';
+import '../../../../core/theme/app_shadows.dart';
+import '../../../../core/theme/app_text_styles.dart';
 
 /// Right-aligned outgoing creator message bubble with double check status.
 class CreatorMessageBubble extends StatelessWidget {
@@ -22,30 +24,13 @@ class CreatorMessageBubble extends StatelessWidget {
           constraints: const BoxConstraints(maxWidth: 280),
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
           decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color(0xFFE1E0FF), Color(0xFFDCE9FF), Color(0xFFC4E7FF)],
-            ),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(16),
-              topRight: Radius.circular(16),
-              bottomLeft: Radius.circular(16),
-              bottomRight: Radius.circular(4),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Color(0x06000000),
-                blurRadius: 4,
-                offset: Offset(0, 1),
-              ),
-            ],
+            gradient: AppColors.chatBubbleOutgoingGradient,
+            borderRadius: AppRadii.bubbleOutgoing,
+            boxShadow: AppShadows.subtle,
           ),
           child: Text(
             text,
-            style: GoogleFonts.plusJakartaSans(
-              fontSize: 13,
-              height: 1.4,
-              color: AppColors.textPrimary,
-            ),
+            style: AppTextStyles.chatBubble,
           ),
         ),
         const SizedBox(height: 2),
@@ -56,11 +41,7 @@ class CreatorMessageBubble extends StatelessWidget {
             children: [
               Text(
                 time,
-                style: GoogleFonts.plusJakartaSans(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.textSecondary,
-                ),
+                style: AppTextStyles.chatTimestamp,
               ),
               const SizedBox(width: 4),
               const Icon(Icons.done_all, size: 14, color: AppColors.primary),

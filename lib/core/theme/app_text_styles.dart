@@ -14,6 +14,30 @@ abstract final class AppTextStyles {
     color: AppColors.textPrimary,
   );
 
+  static TextStyle h2 = GoogleFonts.plusJakartaSans(
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+    height: 28 / 20,
+    letterSpacing: -0.4,
+    color: AppColors.textPrimary,
+  );
+
+  static TextStyle h3 = GoogleFonts.plusJakartaSans(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    height: 24 / 18,
+    letterSpacing: -0.2,
+    color: AppColors.textPrimary,
+  );
+
+  static TextStyle h4 = GoogleFonts.plusJakartaSans(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    height: 22 / 16,
+    letterSpacing: -0.1,
+    color: AppColors.textPrimary,
+  );
+
   // Subtitle / Body
   static TextStyle subtitle = GoogleFonts.plusJakartaSans(
     fontSize: 14,
@@ -27,6 +51,27 @@ abstract final class AppTextStyles {
     fontWeight: FontWeight.w400,
     height: 18 / 13,
     letterSpacing: 0.065,
+    color: AppColors.textSecondary,
+  );
+
+  static TextStyle bodyMedium = GoogleFonts.plusJakartaSans(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    height: 20 / 14,
+    color: AppColors.textPrimary,
+  );
+
+  static TextStyle bodySmall = GoogleFonts.plusJakartaSans(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    height: 16 / 12,
+    color: AppColors.textSecondary,
+  );
+
+  static TextStyle caption = GoogleFonts.plusJakartaSans(
+    fontSize: 11,
+    fontWeight: FontWeight.w500,
+    height: 14 / 11,
     color: AppColors.textSecondary,
   );
 
@@ -72,5 +117,16 @@ abstract final class AppTextStyles {
   );
   static TextStyle legalText = GoogleFonts.plusJakartaSans(
     fontSize: 13, fontWeight: FontWeight.w400, height: 16.25 / 13, letterSpacing: 0.065, color: AppColors.textSecondary,
+  );
+
+  // Messaging & Chat
+  static TextStyle chatBubble = GoogleFonts.plusJakartaSans(
+    fontSize: 13, fontWeight: FontWeight.w400, height: 1.4, color: AppColors.textPrimary,
+  );
+  static TextStyle chatTimestamp = GoogleFonts.plusJakartaSans(
+    fontSize: 10, fontWeight: FontWeight.w500, color: AppColors.textSecondary,
+  );
+  static TextStyle chipAction = GoogleFonts.plusJakartaSans(
+    fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.textPrimary,
   );
 }

@@ -1,74 +1,63 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_shadows.dart';
+import '../../../../core/theme/app_text_styles.dart';
 import 'brand_avatar_badge.dart';
 
 /// Context sub-header for active brand and campaign collaboration in messages.
 class BrandCampaignContextBar extends StatelessWidget {
-  const BrandCampaignContextBar({super.key});
+  final String brandName;
+  final String campaignName;
+  final String status;
+  final bool isVerified;
+  final String? avatarUrl;
+
+  const BrandCampaignContextBar({
+    super.key,
+    required this.brandName,
+    required this.campaignName,
+    required this.status,
+    this.isVerified = true,
+    this.avatarUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: const BoxDecoration(
-        color: Color(0xFFEFF4FF),
-        boxShadow: [
-          BoxShadow(
-            color: Color(0x06000000),
-            blurRadius: 4,
-            offset: Offset(0, 1),
-          ),
-        ],
+        color: AppColors.inputBackground,
+        boxShadow: AppShadows.subtle,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
-              const BrandAvatarBadge(),
+              BrandAvatarBadge(avatarUrl: avatarUrl),
               const SizedBox(width: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
-                      Text(
-                        'Sony Audio',
-                        style: GoogleFonts.plusJakartaSans(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.textPrimary,
-                        ),
-                      ),
-                      const SizedBox(width: 4),
-                      const Icon(
-                        Icons.verified,
-                        size: 16,
-                        color: AppColors.primary,
-                      ),
+                      Text(brandName, style: AppTextStyles.h4.copyWith(fontSize: 15)),
+                      if (isVerified) ...[
+                        const SizedBox(width: 4),
+                        const Icon(Icons.verified, size: 16, color: AppColors.primary),
+                      ],
                     ],
                   ),
                   const SizedBox(height: 2),
                   Row(
                     children: [
-                      Text(
-                        'WH-1000XM5 Launch',
-                        style: GoogleFonts.plusJakartaSans(
-                          fontSize: 11,
-                          color: AppColors.textSecondary,
-                        ),
-                      ),
+                      Text(campaignName, style: AppTextStyles.caption),
                       const SizedBox(width: 4),
-                      const Text(
-                        '•',
-                        style: TextStyle(color: AppColors.dotDivider),
-                      ),
+                      const Text('•', style: TextStyle(color: AppColors.dotDivider)),
                       const SizedBox(width: 4),
                       Text(
-                        'Active',
-                        style: GoogleFonts.plusJakartaSans(
-                          fontSize: 11,
+                        status,
+                        style: AppTextStyles.caption.copyWith(
                           fontWeight: FontWeight.w700,
                           color: AppColors.primary,
                         ),

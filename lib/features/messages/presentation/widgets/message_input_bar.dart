@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_radii.dart';
+import '../../../../core/theme/app_shadows.dart';
+import '../../../../core/theme/app_text_styles.dart';
 
 /// Message input pill bar with attachment, voice note, and send actions.
 class MessageInputBar extends StatelessWidget {
@@ -20,16 +22,10 @@ class MessageInputBar extends StatelessWidget {
         top: false,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: AppColors.surfaceWhite,
-            borderRadius: BorderRadius.circular(999),
-            boxShadow: const [
-              BoxShadow(
-                color: Color(0x0C000000),
-                blurRadius: 10,
-                offset: Offset(0, 2),
-              ),
-            ],
+            borderRadius: AppRadii.roundedPill,
+            boxShadow: AppShadows.floating,
           ),
           child: Row(
             children: [
@@ -44,15 +40,11 @@ class MessageInputBar extends StatelessWidget {
               Expanded(
                 child: TextField(
                   controller: controller,
-                  style: GoogleFonts.plusJakartaSans(
-                    fontSize: 14,
-                    color: AppColors.textPrimary,
-                  ),
+                  style: AppTextStyles.fieldInput,
                   decoration: InputDecoration(
                     hintText: 'Type your message to Sony Audio...',
-                    hintStyle: GoogleFonts.plusJakartaSans(
-                      fontSize: 13,
-                      color: AppColors.textSecondary.withValues(alpha: 0.6),
+                    hintStyle: AppTextStyles.bodySmall.copyWith(
+                      color: AppColors.textPlaceholder,
                     ),
                     border: InputBorder.none,
                     isDense: true,

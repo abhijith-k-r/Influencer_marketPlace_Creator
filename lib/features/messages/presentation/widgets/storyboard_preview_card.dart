@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_radii.dart';
+import '../../../../core/theme/app_shadows.dart';
+import '../../../../core/theme/app_text_styles.dart';
 
 /// Image attachment preview with frosted glass label and read receipts.
 class StoryboardPreviewCard extends StatelessWidget {
@@ -16,21 +18,15 @@ class StoryboardPreviewCard extends StatelessWidget {
       children: [
         Container(
           padding: const EdgeInsets.all(4),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: AppColors.surfaceWhite,
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: const [
-              BoxShadow(
-                color: Color(0x08000000),
-                blurRadius: 6,
-                offset: Offset(0, 1),
-              ),
-            ],
+            borderRadius: AppRadii.roundedLg,
+            boxShadow: AppShadows.subtle,
           ),
           child: Stack(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: AppRadii.roundedMd,
                 child: Image.network(
                   _imageUrl,
                   width: 240,
@@ -58,12 +54,11 @@ class StoryboardPreviewCard extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     color: AppColors.surfaceWhite.withValues(alpha: 0.9),
-                    borderRadius: BorderRadius.circular(999),
+                    borderRadius: AppRadii.roundedPill,
                   ),
                   child: Text(
                     'Storyboard_Preview.png',
-                    style: GoogleFonts.plusJakartaSans(
-                      fontSize: 10,
+                    style: AppTextStyles.caption.copyWith(
                       fontWeight: FontWeight.w700,
                       color: AppColors.textPrimary,
                     ),
@@ -81,11 +76,7 @@ class StoryboardPreviewCard extends StatelessWidget {
             children: [
               Text(
                 '10:46 AM',
-                style: GoogleFonts.plusJakartaSans(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.textSecondary,
-                ),
+                style: AppTextStyles.chatTimestamp,
               ),
               const SizedBox(width: 4),
               const Icon(Icons.done_all, size: 14, color: AppColors.primary),

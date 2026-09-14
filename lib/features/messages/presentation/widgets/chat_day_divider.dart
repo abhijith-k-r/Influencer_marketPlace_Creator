@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_radii.dart';
+import '../../../../core/theme/app_text_styles.dart';
 
 /// Center timestamp badge dividing chat dates.
 class ChatDayDivider extends StatelessWidget {
@@ -13,17 +14,16 @@ class ChatDayDivider extends StatelessWidget {
     return Center(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-        decoration: BoxDecoration(
-          color: const Color(0xFFE5EEFF),
-          borderRadius: BorderRadius.circular(999),
+        decoration: const BoxDecoration(
+          color: AppColors.trustBadgeBackground,
+          borderRadius: AppRadii.roundedPill,
         ),
         child: Text(
           text,
-          style: GoogleFonts.plusJakartaSans(
+          style: AppTextStyles.caption.copyWith(
             fontSize: 10,
             fontWeight: FontWeight.w700,
             letterSpacing: 0.6,
-            color: AppColors.textSecondary,
           ),
         ),
       ),

@@ -11,6 +11,7 @@ abstract final class AppRoutes {
   static const String mainShell = '/main';
   static const String campaignDetails = '/campaign/details';
   static const String messages = '/messages';
+  static const String chatDetail = '/messages/chat';
   static const String payments = '/payments';
   static const String requestPayment = '/payments/request';
   static const String creatorProfile = '/profile';

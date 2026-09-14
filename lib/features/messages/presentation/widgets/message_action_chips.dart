@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_radii.dart';
+import '../../../../core/theme/app_shadows.dart';
+import '../../../../core/theme/app_text_styles.dart';
 
 /// Horizontal action chip bar for quick actions in creator messaging.
 class MessageActionChips extends StatelessWidget {
@@ -32,19 +34,13 @@ class MessageActionChips extends StatelessWidget {
   Widget _buildChip(IconData icon, String label, VoidCallback? onTap) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(999),
+      borderRadius: AppRadii.roundedPill,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: AppColors.surfaceWhite,
-          borderRadius: BorderRadius.circular(999),
-          boxShadow: const [
-            BoxShadow(
-              color: Color(0x06000000),
-              blurRadius: 4,
-              offset: Offset(0, 1),
-            ),
-          ],
+          borderRadius: AppRadii.roundedPill,
+          boxShadow: AppShadows.subtle,
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -53,11 +49,7 @@ class MessageActionChips extends StatelessWidget {
             const SizedBox(width: 6),
             Text(
               label,
-              style: GoogleFonts.plusJakartaSans(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: AppColors.textPrimary,
-              ),
+              style: AppTextStyles.chipAction,
             ),
           ],
         ),

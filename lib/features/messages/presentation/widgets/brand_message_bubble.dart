@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_radii.dart';
+import '../../../../core/theme/app_shadows.dart';
+import '../../../../core/theme/app_text_styles.dart';
 
 /// Left-aligned incoming brand message bubble with headphones avatar.
 class BrandMessageBubble extends StatelessWidget {
@@ -18,9 +20,9 @@ class BrandMessageBubble extends StatelessWidget {
           width: 28,
           height: 28,
           margin: const EdgeInsets.only(bottom: 16),
-          decoration: BoxDecoration(
-            color: const Color(0xFFD3E4FE),
-            borderRadius: BorderRadius.circular(8),
+          decoration: const BoxDecoration(
+            color: AppColors.strengthInactive,
+            borderRadius: AppRadii.roundedSm,
           ),
           child: const Icon(
             Icons.headphones_rounded,
@@ -40,27 +42,12 @@ class BrandMessageBubble extends StatelessWidget {
                 ),
                 decoration: const BoxDecoration(
                   color: AppColors.surfaceWhite,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16),
-                    bottomRight: Radius.circular(16),
-                    bottomLeft: Radius.circular(4),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(0x06000000),
-                      blurRadius: 4,
-                      offset: Offset(0, 1),
-                    ),
-                  ],
+                  borderRadius: AppRadii.bubbleIncoming,
+                  boxShadow: AppShadows.subtle,
                 ),
                 child: Text(
                   text,
-                  style: GoogleFonts.plusJakartaSans(
-                    fontSize: 13,
-                    height: 1.4,
-                    color: AppColors.textPrimary,
-                  ),
+                  style: AppTextStyles.chatBubble,
                 ),
               ),
               const SizedBox(height: 2),
@@ -68,11 +55,7 @@ class BrandMessageBubble extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 4),
                 child: Text(
                   time,
-                  style: GoogleFonts.plusJakartaSans(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.textSecondary,
-                  ),
+                  style: AppTextStyles.chatTimestamp,
                 ),
               ),
             ],

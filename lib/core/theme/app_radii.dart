@@ -7,6 +7,7 @@ abstract final class AppRadii {
   static const double sm = 8.0;
   static const double md = 12.0;
   static const double lg = 16.0;
+  static const double xl = 20.0;
   static const double pill = 9999.0;
 
   // BorderRadius instances
@@ -14,6 +15,7 @@ abstract final class AppRadii {
   static const BorderRadius roundedSm = BorderRadius.all(Radius.circular(sm));
   static const BorderRadius roundedMd = BorderRadius.all(Radius.circular(md));
   static const BorderRadius roundedLg = BorderRadius.all(Radius.circular(lg));
+  static const BorderRadius roundedXl = BorderRadius.all(Radius.circular(xl));
   static const BorderRadius roundedPill = BorderRadius.all(
     Radius.circular(pill),
   );
@@ -26,5 +28,20 @@ abstract final class AppRadii {
   static const BorderRadius roundedTopLg = BorderRadius.only(
     topLeft: Radius.circular(lg),
     topRight: Radius.circular(lg),
+  );
+
+  // Chat Bubble Tail Radii
+  static const BorderRadius bubbleIncoming = BorderRadius.only(
+    topLeft: Radius.circular(lg),
+    topRight: Radius.circular(lg),
+    bottomRight: Radius.circular(lg),
+    bottomLeft: Radius.circular(4),
+  );
+
+  static const BorderRadius bubbleOutgoing = BorderRadius.only(
+    topLeft: Radius.circular(lg),
+    topRight: Radius.circular(lg),
+    bottomLeft: Radius.circular(lg),
+    bottomRight: Radius.circular(4),
   );
 }

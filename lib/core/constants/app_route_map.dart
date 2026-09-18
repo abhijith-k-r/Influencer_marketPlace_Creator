@@ -5,6 +5,8 @@ import '../../features/campaigns/presentation/views/brand_campaign_details_scree
 import '../../features/campaigns/presentation/views/brand_campaign_filter_screen.dart';
 import '../../features/campaigns/presentation/views/brand_campaign_list_screen.dart';
 import '../../features/chat/presentation/views/individual_chat_screen.dart';
+import '../../features/creator/messages/views/creator_chat_thread_view.dart';
+import '../../features/creator/navigation/views/creator_navigation_view.dart';
 import '../../features/payments/presentation/views/brand_payment_dashboard_screen.dart';
 import '../../features/payments/presentation/views/brand_payment_details_screen.dart';
 import '../../features/payments/presentation/views/brand_payment_filter_screen.dart';
@@ -18,7 +20,9 @@ final Map<String, WidgetBuilder> appRouteMap = {
   AppRoutes.splash: (_) => const SplashScreen(),
   AppRoutes.roleSelection: (_) => const RoleSelectionScreen(),
   AppRoutes.brandShell: (_) => const BrandMainShell(),
+  AppRoutes.creatorShell: (_) => const CreatorNavigationView(),
   AppRoutes.chatDetail: (_) => const IndividualChatScreen(),
+  AppRoutes.creatorChatDetail: (_) => const CreatorChatThreadView(),
   AppRoutes.auth: (_) => const AuthBottomSheet(),
   AppRoutes.paymentDashboard: (_) => const BrandPaymentDashboardScreen(),
   AppRoutes.paymentDetails: (_) => const BrandPaymentDetailsScreen(),

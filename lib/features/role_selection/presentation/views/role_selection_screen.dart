@@ -20,9 +20,11 @@ class RoleSelectionScreen extends StatelessWidget {
     return BlocConsumer<RoleBloc, RoleState>(
       listener: (context, state) {
         if (state.isConfirmed) {
-          // Route to Brand shell if Brand is selected;
-          // (Can also support Creator side dynamically)
-          Navigator.of(context).pushReplacementNamed(AppRoutes.brandShell);
+          if (state.selectedRole == UserRole.creator) {
+            Navigator.of(context).pushReplacementNamed(AppRoutes.creatorShell);
+          } else {
+            Navigator.of(context).pushReplacementNamed(AppRoutes.brandShell);
+          }
         }
       },
       builder: (context, state) {
@@ -200,9 +202,9 @@ class RoleSelectionScreen extends StatelessWidget {
                     tagColor: AppColors.primary,
                     metaText: '14.2k+ Creators Ready',
                     onTap: () {
-                      context
-                          .read<RoleBloc>()
-                          .add(const SelectRoleEvent(UserRole.brand));
+                      context.read<RoleBloc>().add(
+                        const SelectRoleEvent(UserRole.brand),
+                      );
                     },
                   ),
 
@@ -225,9 +227,9 @@ class RoleSelectionScreen extends StatelessWidget {
                     tagColor: AppColors.secondary,
                     metaText: '\$3.8M+ Disbursed',
                     onTap: () {
-                      context
-                          .read<RoleBloc>()
-                          .add(const SelectRoleEvent(UserRole.creator));
+                      context.read<RoleBloc>().add(
+                        const SelectRoleEvent(UserRole.creator),
+                      );
                     },
                   ),
 
@@ -241,14 +243,16 @@ class RoleSelectionScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: hasSelection
                           ? (selectedRole == UserRole.creator
-                              ? AppColors.secondary
-                              : AppColors.primary)
-                          : AppColors.surfaceContainerHighest.withValues(alpha: 0.6),
+                                ? AppColors.secondary
+                                : AppColors.primary)
+                          : AppColors.surfaceContainerHighest.withValues(
+                              alpha: 0.6,
+                            ),
                       borderRadius: AppRadii.roundedLg,
                       boxShadow: hasSelection
                           ? (selectedRole == UserRole.creator
-                              ? AppShadows.secondaryGlow
-                              : AppShadows.primaryGlow)
+                                ? AppShadows.secondaryGlow
+                                : AppShadows.primaryGlow)
                           : null,
                     ),
                     child: Material(
@@ -256,9 +260,9 @@ class RoleSelectionScreen extends StatelessWidget {
                       child: InkWell(
                         onTap: hasSelection
                             ? () {
-                                context
-                                    .read<RoleBloc>()
-                                    .add(const ConfirmRoleEvent());
+                                context.read<RoleBloc>().add(
+                                  const ConfirmRoleEvent(),
+                                );
                               }
                             : null,
                         borderRadius: AppRadii.roundedLg,
@@ -324,8 +328,9 @@ class RoleSelectionScreen extends StatelessWidget {
     required String metaText,
     required VoidCallback onTap,
   }) {
-    final activeBorderColor =
-        role == UserRole.creator ? AppColors.secondary : AppColors.primary;
+    final activeBorderColor = role == UserRole.creator
+        ? AppColors.secondary
+        : AppColors.primary;
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
@@ -455,9 +460,7 @@ class RoleSelectionScreen extends StatelessWidget {
                       ),
                       Text(
                         metaText,
-                        style: AppTextStyles.labelSm(
-                          color: AppColors.tertiary,
-                        ),
+                        style: AppTextStyles.labelSm(color: AppColors.tertiary),
                       ),
                     ],
                   ),

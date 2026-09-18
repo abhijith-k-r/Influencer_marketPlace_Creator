@@ -27,6 +27,21 @@ abstract final class AppAssets {
   static const String urbanKicksLogo =
       'https://lh3.googleusercontent.com/aida-public/AB6AXuCliMqF3rCdehXH2UsNKHDPCXpQesXRzleHfoXfpFAZXRHptRRTpPN_EA-8JtHWcUE-q1CLnB_WoReT1PNjpo3NZR1-GN3NCe7eeVj1mLyMMZ94PNeNf-BKIlz-S6-6QbRZHINDADeShCXTvSgBzfvbBBHaH6W1v0xtR3CbsTkjl3-KcSR36RR-qgpd93rW6S7fFeRnaIvRbKYJYtpllZTRAQ8LxujTna9iw1GeYfW70RjuUr6nLFF6';
 
+  static const String brandAvatar1 =
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuADXuOdK_KMz6Oyq_cBTFTgSFgdpbanZQlHSdoYtF894K1294WTMFPg53-TymUiCglUWF3KVX3InXDu9oEas8urPNI7Govc3maAjrx8mKbwqpOoyIEoa1ELxJRvsI9KvVKatRuPgkIipX0fzmSp7ib4DfBReLChoooljdTvXiJuKSxB2qOUsarsyyguzZ21sck3Rag16i62LFMb7kzmj9lplFrgAGJwuGe6Ii6ClCOyrM8cd15f2bJ7';
+
+  static const String brandAvatar2 =
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuAryOn8FfffttaYiKuCp0CLovTFNUr9D6LSNptGbCOd_en1hYWoBualJolSbss_mvBMq6K5sJ0Y7cnOuv4huLs-kFGjnLSCgh4TfU0_-98oriGnb744P5zE6g8qoCFOwoQ1F7loAe6wfjAeMWNXN4yUbFkKuM4QR15EAiOdSIcrjvUBkO_ohQEdfF9BpI6ga802H6rNxjX0vIttUS0k4WGB4aByA8dxs1RmhyZew-z_qKHRDMkrxYgz';
+
+  static const String brandAvatar3 =
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuCd72jItETaDN7pZvtsf0FMPjtcgUYE7k2P1zaaA2W5RhPtV4mH8pYPb7jh_77SW4P7egGEE-3Ql9KYSe2KTBhbq2S4kw63al_90obMWRHGg5PkMQYuUkcN9ZX6OTxx25OeoA9fajp3KZZbkR3JZid2tP3x1WxyJQh5cCnEfYnLrRIkkw4wMSM4_nSAl5uYpW_OJ7SjsF9S6y3h4wLAlabLXjZ08Bg9TU6AvJFDuFG1Ij6_dw16-cCt';
+
+  static const String brandAvatar4 =
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuAydJ-hrcxF8-UNkItuYfGhh46Bwd3yjHLn5DL4Wzy6wcximfaA_KQUqSCcNuQMSaJMuBkvnmLjlRk3lWTF8uU_Y4wO6GELbX9X8Bj-15UytYrYqfDE61O_Bt7ZJ-E55znOuRaMrt8bvRdp8pzvYHl05m2OZhA87WdsUX4Fheea0faasJOd7BrmxhiWRDe5Yyxi8-_W4dWwupFPPHoevarGN79Lpvm-vDBCulgZcWrbylRUhtuu9Qvd';
+
+  static const String creatorVideoThumbnail =
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuBnqH6nMIa-fX4yoySxWiq7B_nEvG68Biv2shbyb1LeW7ABRKjPc-NYv-Kb7VRrBiUnWMPHtPa-ps5FUN75-raGX-0CM14O0dvb8yHsn69wEWiExVPs1O00cbpdIilHRjDe47fL4wE44R4sQU016cqTgolyP5L41EoqA3sCaR9c-Ofh0QqDGn0N5QxHFvSxAkJnraq1WSjiRnx-Ab0BRG5tNUerWpa248rYoJcSuG1ZrzwEE3Eu7NIw';
+
   // Lookbook Assets
   static const String lookbookFallDrop =
       'https://lh3.googleusercontent.com/aida-public/AB6AXuD2XOr38fVOk7sGBkTZX42xv7uRNhxuSYQyJviAOjEJvp99c_ZKS_mjAESxVozQ8UUxPGllZ9UGcJFg3xoAcHvxHwlglelQipeejcavnuQQiwnFeUBiFp8rqJxwP-5gfHvNV2h-wnNxCgfQcSIyzPahKQpdlqi0xcz6SlwHMjkS68Km4euly0_CmIRxjeYIQ3UHZfiPH6NVtWX7fqwoqA_XD9dwfFgJbnjXB6ifDJzh-vkw7XDywFh4';

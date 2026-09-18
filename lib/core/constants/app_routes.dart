@@ -3,7 +3,9 @@ abstract final class AppRoutes {
   static const String splash = '/splash';
   static const String roleSelection = '/role_selection';
   static const String brandShell = '/brand_shell';
+  static const String creatorShell = '/creator_shell';
   static const String chatDetail = '/chat_detail';
+  static const String creatorChatDetail = '/creator_chat_detail';
   static const String auth = '/auth';
 
   static const String paymentDashboard = '/payment_dashboard';

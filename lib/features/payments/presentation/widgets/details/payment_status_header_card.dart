@@ -19,41 +19,53 @@ class PaymentStatusHeaderCard extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          children: [
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                CircleAvatar(
-                  radius: 24,
-                  backgroundColor: AppColors.surfaceContainer,
-                  backgroundImage: NetworkImage(transaction.creatorAvatar),
-                ),
-                const Positioned(
-                  bottom: -2,
-                  right: -2,
-                  child: Icon(
-                    Icons.verified_rounded,
-                    size: 16,
-                    color: AppColors.secondary,
+        Expanded(
+          child: Row(
+            children: [
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  CircleAvatar(
+                    radius: 24,
+                    backgroundColor: AppColors.surfaceContainer,
+                    backgroundImage: NetworkImage(transaction.creatorAvatar),
                   ),
+                  const Positioned(
+                    bottom: -2,
+                    right: -2,
+                    child: Icon(
+                      Icons.verified_rounded,
+                      size: 16,
+                      color: AppColors.secondary,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      transaction.creatorName,
+                      style: AppTextStyles.headlineSm(),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      '${transaction.campaignTitle} • Milestone 2',
+                      style: AppTextStyles.bodySm(color: AppColors.tertiary),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            const SizedBox(width: 12),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(transaction.creatorName, style: AppTextStyles.headlineSm()),
-                const SizedBox(height: 2),
-                Text(
-                  '${transaction.campaignTitle} • Milestone 2',
-                  style: AppTextStyles.bodySm(color: AppColors.tertiary),
-                ),
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
+        const SizedBox(width: 8),
         GestureDetector(
           onTap: onCopyPaymentId,
           child: Container(

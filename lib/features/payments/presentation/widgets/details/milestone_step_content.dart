@@ -20,9 +20,7 @@ class MilestoneStepContent extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: milestone.isCurrent
-            ? AppColors.surfaceContainerHigh.withValues(alpha: 0.6)
-            : AppColors.surfaceContainerLow.withValues(alpha: 0.5),
+        color: milestone.isCurrent ? AppColors.surfaceContainerHigh.withValues(alpha: 0.6) : AppColors.surfaceContainerLow.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(AppRadii.xl),
       ),
       child: Column(
@@ -31,33 +29,36 @@ class MilestoneStepContent extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Text(
-                    milestone.title,
-                    style: AppTextStyles.labelLg(
-                      color: milestone.isLocked ? AppColors.tertiary : AppColors.onSurface,
-                    ),
-                  ),
-                  if (milestone.isCurrent) ...[
-                    const SizedBox(width: 6),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: AppColors.primary.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(AppRadii.full),
+              Expanded(
+                child: Row(
+                  children: [
+                    Flexible(
+                      child: Text(
+                        milestone.title,
+                        style: AppTextStyles.labelLg(color: milestone.isLocked ? AppColors.tertiary : AppColors.onSurface),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      child: Text('Current', style: AppTextStyles.labelSm(color: AppColors.primary)),
                     ),
+                    if (milestone.isCurrent) ...[
+                      const SizedBox(width: 6),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: AppColors.primary.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(AppRadii.full),
+                        ),
+                        child: Text('Current', style: AppTextStyles.labelSm(color: AppColors.primary)),
+                      ),
+                    ],
                   ],
-                ],
+                ),
               ),
+              const SizedBox(width: 8),
               Text(
                 formattedAmount,
                 style: AppTextStyles.labelLg(
-                  color: milestone.isCurrent
-                      ? AppColors.primary
-                      : (milestone.isLocked ? AppColors.tertiary : AppColors.onSurface),
+                  color: milestone.isCurrent ? AppColors.primary : (milestone.isLocked ? AppColors.tertiary : AppColors.onSurface),
                 ),
               ),
             ],
@@ -66,19 +67,17 @@ class MilestoneStepContent extends StatelessWidget {
           Row(
             children: [
               Icon(
-                milestone.isCompleted
-                    ? Icons.verified
-                    : (milestone.isCurrent ? Icons.bolt : Icons.hourglass_top),
+                milestone.isCompleted ? Icons.verified : (milestone.isCurrent ? Icons.bolt : Icons.hourglass_top),
                 size: 13,
-                color: milestone.isCompleted
-                    ? AppColors.secondary
-                    : (milestone.isCurrent ? AppColors.primary : AppColors.tertiary),
+                color: milestone.isCompleted ? AppColors.secondary : (milestone.isCurrent ? AppColors.primary : AppColors.tertiary),
               ),
               const SizedBox(width: 4),
-              Text(
-                milestone.dateDescription,
-                style: AppTextStyles.bodySm(
-                  color: milestone.isCurrent ? AppColors.onSurface : AppColors.tertiary,
+              Expanded(
+                child: Text(
+                  milestone.dateDescription,
+                  style: AppTextStyles.bodySm(color: milestone.isCurrent ? AppColors.onSurface : AppColors.tertiary),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],

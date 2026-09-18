@@ -10,6 +10,11 @@ abstract final class AppRoutes {
   static const String paymentDetails = '/payment_details';
   static const String paymentFilter = '/payment_filter';
 
+  static const String campaignList = '/campaign_list';
+  static const String campaignCreate = '/campaign_create';
+  static const String campaignFilter = '/campaign_filter';
+  static const String campaignDetails = '/campaign_details';
+
   // Backward-compatibility route aliases
   static const String signup = auth;
   static const String signin = auth;

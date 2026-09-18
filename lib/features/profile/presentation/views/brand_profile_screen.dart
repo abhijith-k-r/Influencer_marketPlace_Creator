@@ -436,39 +436,48 @@ class _BrandProfileScreenState extends State<BrandProfileScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: AppColors.secondaryContainer.withValues(alpha: 0.12),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: const Icon(
-                  Icons.shield_outlined,
-                  size: 20,
-                  color: AppColors.secondary,
-                ),
-              ),
-              const SizedBox(width: 14),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Escrow Auto-Disbursement',
-                    style: AppTextStyles.labelLg(
-                      color: AppColors.onSurface,
-                    ).copyWith(fontWeight: FontWeight.w700),
+          Expanded(
+            child: Row(
+              children: [
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: AppColors.secondaryContainer.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  Text(
-                    'Funds released upon campaign draft sign-off',
-                    style: AppTextStyles.bodySm(color: AppColors.tertiary),
+                  child: const Icon(
+                    Icons.shield_outlined,
+                    size: 20,
+                    color: AppColors.secondary,
                   ),
-                ],
-              ),
-            ],
+                ),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Escrow Auto-Disbursement',
+                        style: AppTextStyles.labelLg(
+                          color: AppColors.onSurface,
+                        ).copyWith(fontWeight: FontWeight.w700),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Text(
+                        'Funds released upon campaign draft sign-off',
+                        style: AppTextStyles.bodySm(color: AppColors.tertiary),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
+          const SizedBox(width: 10),
 
           // Interactive Toggle Switch
           Switch(

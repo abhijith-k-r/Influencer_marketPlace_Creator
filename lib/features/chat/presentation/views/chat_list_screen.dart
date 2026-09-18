@@ -69,22 +69,29 @@ class _ChatListScreenState extends State<ChatListScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.verified_user_rounded,
-                                size: 18,
-                                color: AppColors.secondary,
-                              ),
-                              const SizedBox(width: 8),
-                              Text(
-                                'Escrow protection active on all 5 conversations',
-                                style: AppTextStyles.labelSm(
-                                  color: AppColors.onSurface,
+                          Expanded(
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.verified_user_rounded,
+                                  size: 18,
+                                  color: AppColors.secondary,
                                 ),
-                              ),
-                            ],
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: Text(
+                                    'Escrow protection active on all 5 conversations',
+                                    style: AppTextStyles.labelSm(
+                                      color: AppColors.onSurface,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
+                          const SizedBox(width: 8),
                           Text(
                             'Details',
                             style: AppTextStyles.labelSm(
@@ -138,41 +145,50 @@ class _ChatListScreenState extends State<ChatListScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              Container(
-                                width: 38,
-                                height: 38,
-                                decoration: BoxDecoration(
-                                  color: AppColors.primary.withValues(alpha: 0.12),
-                                  shape: BoxShape.circle,
-                                ),
-                                child: const Icon(
-                                  Icons.handshake_rounded,
-                                  size: 20,
-                                  color: AppColors.primary,
-                                ),
-                              ),
-                              const SizedBox(width: 12),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Looking to cast more creators?',
-                                    style: AppTextStyles.labelMd(
-                                      color: AppColors.onSurface,
-                                    ).copyWith(fontWeight: FontWeight.w700),
+                          Expanded(
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 38,
+                                  height: 38,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.primary.withValues(alpha: 0.12),
+                                    shape: BoxShape.circle,
                                   ),
-                                  Text(
-                                    '14 creators ready to pitch your sneaker drop',
-                                    style: AppTextStyles.bodySm(
-                                      color: AppColors.tertiary,
-                                    ),
+                                  child: const Icon(
+                                    Icons.handshake_rounded,
+                                    size: 20,
+                                    color: AppColors.primary,
                                   ),
-                                ],
-                              ),
-                            ],
+                                ),
+                                const SizedBox(width: 12),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Looking to cast more creators?',
+                                        style: AppTextStyles.labelMd(
+                                          color: AppColors.onSurface,
+                                        ).copyWith(fontWeight: FontWeight.w700),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      Text(
+                                        '14 creators ready to pitch your sneaker drop',
+                                        style: AppTextStyles.bodySm(
+                                          color: AppColors.tertiary,
+                                        ),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
+                          const SizedBox(width: 10),
                           ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
@@ -519,11 +535,15 @@ class _ChatListScreenState extends State<ChatListScreen> {
                         children: [
                           Row(
                             children: [
-                              Text(
-                                convo.creatorName,
-                                style: AppTextStyles.labelLg(
-                                  color: AppColors.onSurface,
-                                ).copyWith(fontWeight: FontWeight.w700),
+                              Flexible(
+                                child: Text(
+                                  convo.creatorName,
+                                  style: AppTextStyles.labelLg(
+                                    color: AppColors.onSurface,
+                                  ).copyWith(fontWeight: FontWeight.w700),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
                               const SizedBox(width: 6),
                               Text(
@@ -556,11 +576,15 @@ class _ChatListScreenState extends State<ChatListScreen> {
                                   ),
                                 ),
                                 const SizedBox(width: 5),
-                                Text(
-                                  convo.campaignTag,
-                                  style: AppTextStyles.labelSm(
-                                    color: AppColors.primary,
-                                  ).copyWith(fontWeight: FontWeight.w700),
+                                Flexible(
+                                  child: Text(
+                                    convo.campaignTag,
+                                    style: AppTextStyles.labelSm(
+                                      color: AppColors.primary,
+                                    ).copyWith(fontWeight: FontWeight.w700),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
                               ],
                             ),

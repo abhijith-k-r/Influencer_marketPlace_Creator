@@ -67,48 +67,48 @@ class RoleSelectionScreen extends StatelessWidget {
                       ),
 
                       // 3 Dots Progress Pill
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 6,
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppColors.surfaceContainerHigh,
-                          borderRadius: AppRadii.roundedPill,
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 8,
-                              height: 8,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: selectedRole == UserRole.creator
-                                    ? AppColors.secondary
-                                    : AppColors.primary,
-                              ),
-                            ),
-                            const SizedBox(width: 6),
-                            Container(
-                              width: 8,
-                              height: 8,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: AppColors.outlineVariant.withValues(alpha: 0.6),
-                              ),
-                            ),
-                            const SizedBox(width: 6),
-                            Container(
-                              width: 8,
-                              height: 8,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: AppColors.outlineVariant.withValues(alpha: 0.6),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      // Container(
+                      //   padding: const EdgeInsets.symmetric(
+                      //     horizontal: 12,
+                      //     vertical: 6,
+                      //   ),
+                      //   decoration: BoxDecoration(
+                      //     color: AppColors.surfaceContainerHigh,
+                      //     borderRadius: AppRadii.roundedPill,
+                      //   ),
+                      //   child: Row(
+                      //     children: [
+                      //       Container(
+                      //         width: 8,
+                      //         height: 8,
+                      //         decoration: BoxDecoration(
+                      //           shape: BoxShape.circle,
+                      //           color: selectedRole == UserRole.creator
+                      //               ? AppColors.secondary
+                      //               : AppColors.primary,
+                      //         ),
+                      //       ),
+                      //       const SizedBox(width: 6),
+                      //       Container(
+                      //         width: 8,
+                      //         height: 8,
+                      //         decoration: BoxDecoration(
+                      //           shape: BoxShape.circle,
+                      //           color: AppColors.outlineVariant.withValues(alpha: 0.6),
+                      //         ),
+                      //       ),
+                      //       const SizedBox(width: 6),
+                      //       Container(
+                      //         width: 8,
+                      //         height: 8,
+                      //         decoration: BoxDecoration(
+                      //           shape: BoxShape.circle,
+                      //           color: AppColors.outlineVariant.withValues(alpha: 0.6),
+                      //         ),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
 
                       // Help button
                       TextButton(

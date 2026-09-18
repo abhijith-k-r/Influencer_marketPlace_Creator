@@ -214,89 +214,100 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              InkWell(
-                onTap: () => Navigator.of(context).pop(),
-                borderRadius: AppRadii.roundedPill,
-                child: Container(
-                  width: 36,
-                  height: 36,
-                  decoration: const BoxDecoration(
-                    color: AppColors.surfaceContainerLow,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                    size: 16,
-                    color: AppColors.onSurface,
+          Expanded(
+            child: Row(
+              children: [
+                InkWell(
+                  onTap: () => Navigator.of(context).pop(),
+                  borderRadius: AppRadii.roundedPill,
+                  child: Container(
+                    width: 36,
+                    height: 36,
+                    decoration: const BoxDecoration(
+                      color: AppColors.surfaceContainerLow,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      size: 16,
+                      color: AppColors.onSurface,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 10),
-              Stack(
-                children: [
-                  Container(
-                    width: 44,
-                    height: 44,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.surfaceContainer,
-                    ),
-                    child: ClipOval(
-                      child: Image.network(
-                        widget.avatarUrl,
-                        fit: BoxFit.cover,
-                        errorBuilder: (_, _, _) => const Icon(
-                          Icons.person,
-                          color: AppColors.tertiary,
+                const SizedBox(width: 10),
+                Stack(
+                  children: [
+                    Container(
+                      width: 44,
+                      height: 44,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.surfaceContainer,
+                      ),
+                      child: ClipOval(
+                        child: Image.network(
+                          widget.avatarUrl,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, _, _) => const Icon(
+                            Icons.person,
+                            color: AppColors.tertiary,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      width: 12,
-                      height: 12,
-                      decoration: BoxDecoration(
-                        color: AppColors.secondaryContainer,
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white, width: 2),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Container(
+                        width: 12,
+                        height: 12,
+                        decoration: BoxDecoration(
+                          color: AppColors.secondaryContainer,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white, width: 2),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+                  ],
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        widget.creatorName,
-                        style: AppTextStyles.labelLg(
-                          color: AppColors.onSurface,
-                        ).copyWith(fontWeight: FontWeight.w700),
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              widget.creatorName,
+                              style: AppTextStyles.labelLg(
+                                color: AppColors.onSurface,
+                              ).copyWith(fontWeight: FontWeight.w700),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                          const Icon(
+                            Icons.verified_rounded,
+                            size: 16,
+                            color: AppColors.secondary,
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 4),
-                      const Icon(
-                        Icons.verified_rounded,
-                        size: 16,
-                        color: AppColors.secondary,
+                      Text(
+                        'Verified Creator • ${widget.niche}',
+                        style: AppTextStyles.bodySm(color: AppColors.tertiary),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),
-                  Text(
-                    'Verified Creator • ${widget.niche}',
-                    style: AppTextStyles.bodySm(color: AppColors.tertiary),
-                  ),
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
+          const SizedBox(width: 8),
 
           // Options Menu
           PopupMenuButton<String>(
@@ -376,60 +387,71 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              Container(
-                width: 36,
-                height: 36,
-                decoration: BoxDecoration(
-                  color: AppColors.primaryContainer.withValues(alpha: 0.12),
-                  borderRadius: BorderRadius.circular(10),
+          Expanded(
+            child: Row(
+              children: [
+                Container(
+                  width: 36,
+                  height: 36,
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryContainer.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Icon(
+                    Icons.shield_outlined,
+                    size: 20,
+                    color: AppColors.primary,
+                  ),
                 ),
-                child: const Icon(
-                  Icons.shield_outlined,
-                  size: 20,
-                  color: AppColors.primary,
-                ),
-              ),
-              const SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        widget.campaignTitle,
-                        style: AppTextStyles.labelMd(
-                          color: AppColors.onSurface,
-                        ).copyWith(fontWeight: FontWeight.w700),
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              widget.campaignTitle,
+                              style: AppTextStyles.labelMd(
+                                color: AppColors.onSurface,
+                              ).copyWith(fontWeight: FontWeight.w700),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 2,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.secondaryFixed,
+                              borderRadius: AppRadii.roundedPill,
+                            ),
+                            child: Text(
+                              'Milestone 2/3',
+                              style: AppTextStyles.labelSm(
+                                color: AppColors.onSecondaryFixed,
+                              ).copyWith(fontWeight: FontWeight.w800),
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 6),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 2,
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppColors.secondaryFixed,
-                          borderRadius: AppRadii.roundedPill,
-                        ),
-                        child: Text(
-                          'Milestone 2/3',
-                          style: AppTextStyles.labelSm(
-                            color: AppColors.onSecondaryFixed,
-                          ).copyWith(fontWeight: FontWeight.w800),
-                        ),
+                      Text(
+                        'Escrow Protected: ₹25,000',
+                        style: AppTextStyles.bodySm(color: AppColors.tertiary),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),
-                  Text(
-                    'Escrow Protected: ₹25,000',
-                    style: AppTextStyles.bodySm(color: AppColors.tertiary),
-                  ),
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
+          const SizedBox(width: 8),
 
           // Status Badge
           Container(

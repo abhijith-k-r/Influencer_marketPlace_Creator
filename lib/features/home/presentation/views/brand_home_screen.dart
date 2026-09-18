@@ -88,26 +88,29 @@ class _BrandHomeScreenState extends State<BrandHomeScreen> {
                       // Featured Section Header
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.baseline,
-                        textBaseline: TextBaseline.alphabetic,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Row(
-                            children: [
-                              Text(
-                                'Top Matched Creators',
-                                style: AppTextStyles.headlineSm(
-                                  color: AppColors.onSurface,
-                                ).copyWith(fontWeight: FontWeight.w700),
-                              ),
-                              const SizedBox(width: 8),
-                              Text(
-                                'Showing 24 creators',
-                                style: AppTextStyles.bodySm(
-                                  color: AppColors.tertiary,
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Top Matched Creators',
+                                  style: AppTextStyles.headlineSm(
+                                    color: AppColors.onSurface,
+                                  ).copyWith(fontWeight: FontWeight.w700),
                                 ),
-                              ),
-                            ],
+                                const SizedBox(height: 2),
+                                Text(
+                                  'Showing 24 creators',
+                                  style: AppTextStyles.bodySm(
+                                    color: AppColors.tertiary,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
+                          const SizedBox(width: 8),
                           InkWell(
                             onTap: () {},
                             borderRadius: AppRadii.roundedPill,

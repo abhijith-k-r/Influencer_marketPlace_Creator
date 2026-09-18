@@ -1,77 +1,121 @@
 import 'package:flutter/material.dart';
 
-/// Global color palette for the Creator Application.
-/// Centralized here so any brand/theme update instantly reflects everywhere.
+/// Global color palette extracted directly from the HTML Tailwind specifications.
+/// Provides exact color tokens for both Brand (Crimson Red) and Creator (Indigo Blue) sides.
 abstract final class AppColors {
-  // Brand Primaries
-  static const Color primary = Color(0xFF4648D4);
-  static const Color primaryDark = Color(0xFF2F2EBE);
-  static const Color primaryLight = Color(0xFF6063EE);
+  // Brand Palette (Crimson Red)
+  static const Color primary = Color(0xFFB9092F);
+  static const Color primaryContainer = Color(0xFFDC2D45);
+  static const Color onPrimary = Color(0xFFFFFFFF);
+  static const Color onPrimaryContainer = Color(0xFFFFFBFF);
+  static const Color primaryFixed = Color(0xFFFFDAD9);
+  static const Color onPrimaryFixed = Color(0xFF400009);
+  static const Color primaryFixedDim = Color(0xFFFFB3B3);
+  static const Color onPrimaryFixedVariant = Color(0xFF920022);
+  static const Color inversePrimary = Color(0xFFFFB3B3);
 
-  // Soft Tint Accents
-  static const Color pillBackground = Color(0xFFE1E0FF);
-  static const Color liveBadgeBackground = Color(0xFFDCE9FF);
-  static const Color strengthInactive = Color(0xFFD3E4FE);
-  static const Color trustBadgeBackground = Color(0xFFE5EEFF);
-  static const Color inputBackground = Color(0xFFEFF4FF);
-  static const Color avatarBorder = Color(0xFFFFFFFF);
+  // Creator Palette (Indigo Blue)
+  static const Color secondary = Color(0xFF2D37E6);
+  static const Color secondaryContainer = Color(0xFF4A56FE);
+  static const Color onSecondary = Color(0xFFFFFFFF);
+  static const Color onSecondaryContainer = Color(0xFFF0EEFF);
+  static const Color secondaryFixed = Color(0xFFE0E0FF);
+  static const Color onSecondaryFixed = Color(0xFF00026C);
+  static const Color secondaryFixedDim = Color(0xFFBEC2FF);
+  static const Color onSecondaryFixedVariant = Color(0xFF1720D9);
 
-  // Text & Content
-  static const Color textPrimary = Color(0xFF0B1C30);
-  static const Color textSecondary = Color(0xFF45464D);
-  static const Color textTertiary = Color(0xFF8C8D94);
-  static const Color textPlaceholder = Color(0xFF76777D);
-  static const Color textWhite = Color(0xFFFFFFFF);
-  static const Color dotDivider = Color(0xFFC6C6CD);
+  // Tertiary Palette
+  static const Color tertiary = Color(0xFF545C72);
+  static const Color tertiaryContainer = Color(0xFF6C748B);
+  static const Color onTertiary = Color(0xFFFFFFFF);
+  static const Color onTertiaryContainer = Color(0xFFFEFCFF);
+  static const Color tertiaryFixed = Color(0xFFDAE2FD);
+  static const Color tertiaryFixedDim = Color(0xFFBEC6E0);
+  static const Color onTertiaryFixed = Color(0xFF131B2E);
+  static const Color onTertiaryFixedVariant = Color(0xFF3F465C);
 
   // Surfaces & Backgrounds
-  static const Color surfaceWhite = Color(0xFFFFFFFF);
-  static const Color surface = surfaceWhite;
-  static const Color scaffoldBackground = Color(0xFFF9FAFF);
-  static const Color background = scaffoldBackground;
-  static const Color buttonPrimary = Color(0xFF000000);
-  static const Color inputBorder = Colors.transparent;
-  static const Color borderLight = Color(0xFFEAECF0);
+  static const Color background = Color(0xFFF8F9FF);
+  static const Color surface = Color(0xFFF8F9FF);
+  static const Color surfaceBright = Color(0xFFF8F9FF);
+  static const Color surfaceDim = Color(0xFFCBDBF5);
+  static const Color surfaceVariant = Color(0xFFD3E4FE);
+  static const Color surfaceContainerLowest = Color(0xFFFFFFFF);
+  static const Color surfaceContainerLow = Color(0xFFEFF4FF);
+  static const Color surfaceContainer = Color(0xFFE5EEFF);
+  static const Color surfaceContainerHigh = Color(0xFFDCE9FF);
+  static const Color surfaceContainerHighest = Color(0xFFD3E4FE);
+  static const Color surfaceTint = Color(0xFFBC0E31);
 
-  // Semantic & Status Accents
-  static const Color error = Color(0xFFD32F2F);
-  static const Color errorLight = Color(0xFFFEE2E2);
-  static const Color errorBorder = Color(0xFFFCA5A5);
-  static const Color success = Color(0xFF2E7D32);
+  // Text & On-Colors
+  static const Color onSurface = Color(0xFF0B1C30);
+  static const Color onSurfaceVariant = Color(0xFF5B4040);
+  static const Color onBackground = Color(0xFF0B1C30);
+
+  // Outlines & Borders
+  static const Color outline = Color(0xFF8F6F6F);
+  static const Color outlineVariant = Color(0xFFE4BDBD);
+  static const Color borderLight = Color(0xFFE5EEFF);
+
+  // Inverses
+  static const Color inverseSurface = Color(0xFF213145);
+  static const Color inverseOnSurface = Color(0xFFEAF1FF);
+
+  // Semantic & Error
+  static const Color error = Color(0xFFBA1A1A);
+  static const Color errorContainer = Color(0xFFFFDAD6);
+  static const Color onError = Color(0xFFFFFFFF);
+  static const Color onErrorContainer = Color(0xFF93000A);
   static const Color emerald = Color(0xFF10B981);
-  static const Color emeraldDark = Color(0xFF059669);
-  static const Color emeraldLight = Color(0xFFECFDF5);
-  static const Color indigo = Color(0xFF4F46E5);
-  static const Color indigoLight = Color(0xFFEEF2FF);
-  static const Color indigoBorder = Color(0xFFC7D2FE);
-  static const Color indigoPurple = Color(0xFF6366F1);
-  static const Color amber = Color(0xFFF59E0B);
-  static const Color amberLight = Color(0xFFFEF3C7);
-  static const Color amberBorder = Color(0xFFFCD34D);
 
-  // Gradients
-  static const LinearGradient cardTopGradient = LinearGradient(
-    colors: [Color(0xFFE1E0FF), Color(0xFF4648D4), Color(0xFFDAE2FD)],
-    stops: [0.0, 0.5, 1.0],
+  // Gradients matching HTML
+  static const LinearGradient splashGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      primaryContainer,
+      primary,
+      onPrimaryFixedVariant,
+    ],
   );
 
-  static const LinearGradient ambientAuraGradient = LinearGradient(
+  static const LinearGradient avatarBorderGradient = LinearGradient(
+    begin: Alignment.topRight,
+    end: Alignment.bottomLeft,
+    colors: [
+      primary,
+      primaryContainer,
+      secondaryContainer,
+    ],
+  );
+
+  static const LinearGradient tipCardGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [Color(0x66E1E0FF), Color(0x4DDAE2FD), Color(0x99DCE9FF)],
+    colors: [
+      surfaceContainerHigh,
+      surfaceContainer,
+      surfaceVariant,
+    ],
   );
 
-  static const LinearGradient chatBubbleOutgoingGradient = LinearGradient(
-    colors: [Color(0xFFE1E0FF), Color(0xFFDCE9FF), Color(0xFFC4E7FF)],
-  );
+  // Backward-compatibility & semantic aliases
+  static const Color surfaceWhite = Color(0xFFFFFFFF);
+  static const Color textPrimary = onSurface;
+  static const Color textSecondary = tertiary;
+  static const Color textTertiary = outline;
+  static const Color scaffoldBackground = background;
+  static const Color inputBackground = surfaceContainerLow;
+  static const Color pillBackground = surfaceContainer;
+  static const Color buttonPrimary = primary;
+  static const Color primaryDark = onPrimaryFixedVariant;
+  static const Color primaryLight = primaryFixedDim;
+  static const Color avatarBorder = outlineVariant;
+  static const Color trustBadgeBackground = surfaceContainerLow;
+  static const Color strengthInactive = surfaceContainerHigh;
+  static const Color liveBadgeBackground = surfaceContainerHighest;
+  static const Color dotDivider = outlineVariant;
 
-  static const LinearGradient escrowGradient = LinearGradient(
-    colors: [Color(0xFF4338CA), Color(0xFF6D28D9), Color(0xFF7C3AED)],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
-
-  static const LinearGradient instagramGradient = LinearGradient(
-    colors: [Color(0xFF833AB4), Color(0xFFFD1D1D), Color(0xFFFCAF45)],
-  );
+  static const LinearGradient cardTopGradient = tipCardGradient;
+  static const LinearGradient ambientAuraGradient = splashGradient;
 }

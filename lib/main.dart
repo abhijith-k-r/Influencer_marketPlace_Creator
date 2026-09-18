@@ -1,71 +1,88 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/constants/app_routes.dart';
 import 'core/theme/app_theme.dart';
-import 'features/auth/presentation/views/signin_screen.dart';
-import 'features/auth/presentation/views/signup_screen.dart';
-import 'features/campaigns/data/models/campaign_model.dart';
-import 'features/campaigns/presentation/views/campaign_details_screen.dart';
-import 'features/home/presentation/views/main_navigation_shell.dart';
-import 'features/messages/data/models/message_thread_model.dart';
-import 'features/messages/presentation/views/creator_message_screen.dart';
-import 'features/messages/presentation/views/messages_inbox_screen.dart';
-import 'features/onboarding/presentation/views/step1_basics_view.dart';
-import 'features/onboarding/presentation/views/step2_details_view.dart';
-import 'features/onboarding/presentation/views/step3_social_view.dart';
-import 'features/onboarding/presentation/views/step4_portfolio_view.dart';
-import 'features/onboarding/presentation/views/step5_review_view.dart';
-import 'features/onboarding/presentation/views/verification_status_view.dart';
-import 'features/payments/presentation/views/payments_screen.dart';
-import 'features/payments/presentation/views/request_payment_screen.dart';
-import 'features/profile/presentation/views/creator_profile_screen.dart';
+import 'features/auth/bloc/auth_bloc.dart';
+import 'features/auth/presentation/views/auth_bottom_sheet.dart';
+import 'features/chat/bloc/chat_bloc.dart';
+import 'features/chat/data/repositories/chat_repository.dart';
+import 'features/chat/presentation/views/individual_chat_screen.dart';
+import 'features/home/bloc/home_bloc.dart';
+import 'features/home/data/repositories/creator_repository.dart';
+import 'features/payments/bloc/payment_bloc.dart';
+import 'features/payments/presentation/views/brand_payment_dashboard_screen.dart';
+import 'features/payments/presentation/views/brand_payment_details_screen.dart';
+import 'features/payments/presentation/views/brand_payment_filter_screen.dart';
+import 'features/profile/bloc/profile_bloc.dart';
+import 'features/profile/data/repositories/profile_repository.dart';
+import 'features/role_selection/bloc/role_bloc.dart';
+import 'features/role_selection/bloc/role_state.dart';
+import 'features/role_selection/presentation/views/role_selection_screen.dart';
+import 'features/shell/presentation/views/brand_main_shell.dart';
+import 'features/splash/presentation/views/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const CreatorApp());
+  runApp(const CollabConnectApp());
 }
 
-/// Root widget of the Creator Application with complete navigation routes.
-class CreatorApp extends StatelessWidget {
-  const CreatorApp({super.key});
+/// Root widget of CollabConnect application.
+/// Provides BLoC instances and dynamically switches theme tokens based on selected role.
+class CollabConnectApp extends StatelessWidget {
+  const CollabConnectApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Creator Platform',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      initialRoute: AppRoutes.signup,
-      routes: {
-        AppRoutes.signup: (_) => const SignupScreen(),
-        AppRoutes.signin: (_) => const SigninScreen(),
-        AppRoutes.onboardingStep1: (_) => const Step1BasicsView(),
-        AppRoutes.onboardingStep2: (_) => const Step2DetailsView(),
-        AppRoutes.onboardingStep3: (_) => const Step3SocialView(),
-        AppRoutes.onboardingStep4: (_) => const Step4PortfolioView(),
-        AppRoutes.onboardingStep5: (_) => const Step5ReviewView(),
-        AppRoutes.verification: (_) => const VerificationStatusView(),
-        AppRoutes.mainShell: (_) => const MainNavigationShell(),
-        AppRoutes.messages: (_) => const MessagesInboxScreen(),
-        AppRoutes.chatDetail: (_) => const CreatorMessageScreen(),
-        AppRoutes.payments: (_) => const PaymentsScreen(),
-        AppRoutes.requestPayment: (_) => const RequestPaymentScreen(),
-        AppRoutes.creatorProfile: (_) => const CreatorProfileScreen(),
-      },
-      onGenerateRoute: (settings) {
-        if (settings.name == AppRoutes.campaignDetails) {
-          final campaign = settings.arguments as CampaignModel?;
-          return MaterialPageRoute(
-            builder: (_) => CampaignDetailsScreen(campaign: campaign),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<RoleBloc>(
+          create: (_) => RoleBloc(),
+        ),
+        BlocProvider<AuthBloc>(
+          create: (_) => AuthBloc(),
+        ),
+        BlocProvider<HomeBloc>(
+          create: (_) => HomeBloc(
+            creatorRepository: MockCreatorRepository(),
+          ),
+        ),
+        BlocProvider<ChatBloc>(
+          create: (_) => ChatBloc(
+            chatRepository: MockChatRepository(),
+          ),
+        ),
+        BlocProvider<ProfileBloc>(
+          create: (_) => ProfileBloc(
+            profileRepository: MockProfileRepository(),
+          ),
+        ),
+        BlocProvider<PaymentBloc>(
+          create: (_) => PaymentBloc(),
+        ),
+      ],
+      child: BlocBuilder<RoleBloc, RoleState>(
+        builder: (context, roleState) {
+          return MaterialApp(
+            title: 'CollabConnect',
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.getTheme(roleState.selectedRole),
+            initialRoute: AppRoutes.splash,
+            routes: {
+              AppRoutes.splash: (_) => const SplashScreen(),
+              AppRoutes.roleSelection: (_) => const RoleSelectionScreen(),
+              AppRoutes.brandShell: (_) => const BrandMainShell(),
+              AppRoutes.chatDetail: (_) => const IndividualChatScreen(),
+              AppRoutes.auth: (_) => const AuthBottomSheet(),
+              AppRoutes.paymentDashboard: (_) =>
+                  const BrandPaymentDashboardScreen(),
+              AppRoutes.paymentDetails: (_) =>
+                  const BrandPaymentDetailsScreen(),
+              AppRoutes.paymentFilter: (_) =>
+                  const BrandPaymentFilterScreen(),
+            },
           );
-        }
-        if (settings.name == AppRoutes.chatDetail) {
-          final thread = settings.arguments as MessageThreadModel?;
-          return MaterialPageRoute(
-            builder: (_) => CreatorMessageScreen(thread: thread),
-          );
-        }
-        return null;
-      },
+        },
+      ),
     );
   }
 }

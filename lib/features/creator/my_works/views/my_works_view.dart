@@ -1,48 +1,88 @@
 import 'package:flutter/material.dart';
-import '../../../../core/theme/app_text_styles.dart';
-import '../../../../core/theme/creator_colors.dart';
+import 'package:creator_side/core/constants/app_routes.dart';
+import 'package:creator_side/core/theme/creator_colors.dart';
+import '../models/creator_work_item.dart';
+import '../models/mock_creator_works_data.dart';
+import '../widgets/list/my_works_card.dart';
+import '../widgets/list/my_works_filter_chips.dart';
+import '../widgets/list/my_works_header.dart';
+import '../widgets/list/my_works_metric_bento.dart';
 
-class MyWorksView extends StatelessWidget {
+/// Main screen displayed under the Creator bottom navigation "My Works" tab.
+class MyWorksView extends StatefulWidget {
   const MyWorksView({super.key});
 
   @override
+  State<MyWorksView> createState() => _MyWorksViewState();
+}
+
+class _MyWorksViewState extends State<MyWorksView> {
+  String _selectedFilter = 'All Works (8)';
+
+  List<CreatorWorkItem> get _filteredItems {
+    if (_selectedFilter.startsWith('In Progress')) {
+      return MockCreatorWorksData.items
+          .where((w) => w.status == 'In Progress')
+          .toList();
+    } else if (_selectedFilter.startsWith('Accepted')) {
+      return MockCreatorWorksData.items
+          .where((w) => w.status == 'Accepted')
+          .toList();
+    } else if (_selectedFilter.startsWith('Applied')) {
+      return MockCreatorWorksData.items
+          .where((w) => w.status == 'Applied')
+          .toList();
+    } else if (_selectedFilter.startsWith('Completed')) {
+      return MockCreatorWorksData.items
+          .where((w) => w.status == 'Paid')
+          .toList();
+    }
+    return MockCreatorWorksData.items;
+  }
+
+  void _onCardTapped(BuildContext context, CreatorWorkItem item) {
+    Navigator.of(
+      context,
+    ).pushNamed(AppRoutes.creatorWorkDetails, arguments: item);
+  }
+
+  void _onFilterTap(BuildContext context) {
+    Navigator.of(context).pushNamed(AppRoutes.creatorWorkFilter);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final items = _filteredItems;
+
     return Scaffold(
       backgroundColor: CreatorColors.background,
-      appBar: AppBar(
-        title: Text('My Works', style: AppTextStyles.headlineMd(color: CreatorColors.onSurface)),
-        backgroundColor: CreatorColors.surfaceContainerLowest,
-        elevation: 0,
-        centerTitle: false,
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 64,
-                height: 64,
-                decoration: BoxDecoration(
-                  color: CreatorColors.surfaceContainerLow,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: const Icon(Icons.work_outline_rounded, size: 32, color: CreatorColors.primary),
+      body: SafeArea(
+        child: Column(
+          children: [
+            MyWorksHeader(onFilterTap: () => _onFilterTap(context)),
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.only(bottom: 24),
+                children: [
+                  const SizedBox(height: 8),
+                  const MyWorksMetricBento(),
+                  const SizedBox(height: 8),
+                  MyWorksFilterChips(
+                    selectedFilter: _selectedFilter,
+                    onFilterSelected: (val) =>
+                        setState(() => _selectedFilter = val),
+                  ),
+                  const SizedBox(height: 4),
+                  ...items.map(
+                    (item) => MyWorksCard(
+                      item: item,
+                      onTap: () => _onCardTapped(context, item),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 16),
-              Text(
-                'Active Deliverables',
-                style: AppTextStyles.headlineSm(color: CreatorColors.onSurface),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Track submissions, milestone approvals, and published brand assets in one organized hub.',
-                textAlign: TextAlign.center,
-                style: AppTextStyles.bodyMd(color: CreatorColors.outline),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

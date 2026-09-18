@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/creator_colors.dart';
+import '../../navigation/widgets/creator_side_drawer.dart';
 import '../models/mock_creator_opportunities.dart';
 import '../widgets/creator_filter_tray.dart';
 import '../widgets/creator_hero_match_banner.dart';
@@ -19,6 +20,7 @@ class _CreatorHomeViewState extends State<CreatorHomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CreatorColors.background,
+      drawer: const CreatorSideDrawer(),
       body: SafeArea(
         child: Column(
           children: [

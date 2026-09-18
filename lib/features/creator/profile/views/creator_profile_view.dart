@@ -1,60 +1,46 @@
 import 'package:flutter/material.dart';
-import '../../../../core/theme/app_text_styles.dart';
-import '../../../../core/theme/creator_colors.dart';
+import 'package:creator_side/core/constants/app_routes.dart';
+import 'package:creator_side/core/theme/creator_colors.dart';
+import '../models/mock_creator_profile_data.dart';
+import '../widgets/profile_account_settings_card.dart';
+import '../widgets/profile_app_bar.dart';
+import '../widgets/profile_bio_card.dart';
+import '../widgets/profile_featured_works_card.dart';
+import '../widgets/profile_header_card.dart';
+import '../widgets/profile_logout_section.dart';
 
+/// Full screen view for Creator Profile tab in bottom navigation.
 class CreatorProfileView extends StatelessWidget {
   const CreatorProfileView({super.key});
 
+  void _onLogout(BuildContext context) {
+    Navigator.of(
+      context,
+    ).pushNamedAndRemoveUntil(AppRoutes.roleSelection, (route) => false);
+  }
+
   @override
   Widget build(BuildContext context) {
+    const profile = MockCreatorProfileData.profile;
+    const works = MockCreatorProfileData.featuredWorks;
+
     return Scaffold(
       backgroundColor: CreatorColors.background,
-      appBar: AppBar(
-        title: Text('Profile', style: AppTextStyles.headlineMd(color: CreatorColors.onSurface)),
-        backgroundColor: CreatorColors.surfaceContainerLowest,
-        elevation: 0,
-        centerTitle: false,
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 72,
-                height: 72,
-                decoration: const BoxDecoration(
-                  color: CreatorColors.primary,
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(Icons.person_rounded, size: 40, color: Colors.white),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                'Aarav Sharma',
-                style: AppTextStyles.headlineMd(color: CreatorColors.onSurface),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                'Sneakerhead & Streetwear Specialist • 140k Reach',
-                style: AppTextStyles.bodySm(color: CreatorColors.outline),
-              ),
-              const SizedBox(height: 16),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                decoration: BoxDecoration(
-                  color: CreatorColors.primaryFixed,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text(
-                  'Profile Verified by CollabConnect',
-                  style: AppTextStyles.labelSm(color: CreatorColors.onPrimaryFixed).copyWith(fontWeight: FontWeight.w700),
-                ),
-              ),
-            ],
-          ),
-        ),
+      appBar: const ProfileAppBar(),
+      body: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        children: [
+          ProfileHeaderCard(profile: profile, onEditProfile: () {}),
+          const SizedBox(height: 16),
+          const ProfileBioCard(profile: profile),
+          const SizedBox(height: 16),
+          const ProfileFeaturedWorksCard(works: works),
+          const SizedBox(height: 16),
+          const ProfileAccountSettingsCard(),
+          const SizedBox(height: 20),
+          ProfileLogoutSection(onLogout: () => _onLogout(context)),
+          const SizedBox(height: 24),
+        ],
       ),
     );
   }

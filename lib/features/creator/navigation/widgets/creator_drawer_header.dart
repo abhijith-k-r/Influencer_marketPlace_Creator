@@ -15,40 +15,44 @@ class CreatorDrawerHeader extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: CreatorColors.primary,
-                    borderRadius: BorderRadius.circular(14),
-                    boxShadow: [
-                      BoxShadow(
-                        color: CreatorColors.primary.withValues(alpha: 0.25),
-                        blurRadius: 10,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: const Icon(Icons.hub_rounded, size: 22, color: Colors.white),
-                ),
-                const SizedBox(width: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('CollabConnect', style: AppTextStyles.headlineSm(color: CreatorColors.onSurface)),
-                    Text(
-                      'CREATOR HUB',
-                      style: AppTextStyles.labelSm(color: CreatorColors.primary).copyWith(
-                        letterSpacing: 0.8,
-                        fontWeight: FontWeight.w800,
-                      ),
+            Expanded(
+              child: Row(
+                children: [
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: CreatorColors.primary,
+                      borderRadius: BorderRadius.circular(14),
+                      boxShadow: [
+                        BoxShadow(
+                          color: CreatorColors.primary.withValues(alpha: 0.25),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ],
+                    child: const Icon(Icons.hub_rounded, size: 22, color: Colors.white),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('CollabConnect', maxLines: 1, overflow: TextOverflow.ellipsis, style: AppTextStyles.headlineSm(color: CreatorColors.onSurface)),
+                        Text(
+                          'CREATOR HUB',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppTextStyles.labelSm(color: CreatorColors.primary).copyWith(letterSpacing: 0.8, fontWeight: FontWeight.w800),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
+            const SizedBox(width: 8),
             InkWell(
               onTap: onClose ?? () => Navigator.of(context).pop(),
               borderRadius: BorderRadius.circular(12),

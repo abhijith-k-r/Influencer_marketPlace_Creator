@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/creator_colors.dart';
-import '../../../auth/presentation/views/auth_bottom_sheet.dart';
+import '../../auth/widgets/creator_auth_bottom_sheet.dart';
 
 class CreatorMessagesAppBar extends StatelessWidget {
   const CreatorMessagesAppBar({super.key});
@@ -60,7 +60,7 @@ class CreatorMessagesAppBar extends StatelessWidget {
               ),
               const SizedBox(width: 4),
               InkWell(
-                onTap: () => AuthBottomSheet.show(context),
+                onTap: () => CreatorAuthBottomSheet.show(context),
                 borderRadius: BorderRadius.circular(16),
                 child: Container(
                   width: 32,

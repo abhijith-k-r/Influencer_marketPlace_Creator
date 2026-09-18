@@ -30,6 +30,11 @@ abstract final class CreatorColors {
 
   static const Color onSurface = Color(0xFF0B1C30);
   static const Color onSurfaceVariant = Color(0xFF454556);
+  static const Color tertiary = Color(0xFF2E37B1);
+  static const Color tertiaryContainer = Color(0xFF4952CA);
+  static const Color error = Color(0xFFBA1A1A);
+  static const Color errorContainer = Color(0xFFFFDAD6);
+  static const Color onErrorContainer = Color(0xFF93000A);
   static const Color outline = Color(0xFF757588);
   static const Color outlineVariant = Color(0xFFC6C5D9);
 

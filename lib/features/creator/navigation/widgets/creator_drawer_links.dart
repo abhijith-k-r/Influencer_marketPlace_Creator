@@ -27,10 +27,7 @@ class CreatorDrawerLinks extends StatelessWidget {
             const Icon(Icons.verified_rounded, size: 18, color: CreatorColors.primary),
             const SizedBox(width: 8),
             Expanded(
-              child: Text(
-                'Official Apple & Stripe Verified Escrow',
-                style: AppTextStyles.labelSm(color: CreatorColors.outline),
-              ),
+              child: Text('Official Apple & Stripe Verified Escrow', style: AppTextStyles.labelSm(color: CreatorColors.outline)),
             ),
           ],
         ),
@@ -38,11 +35,11 @@ class CreatorDrawerLinks extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('CollabConnect v2.4', style: AppTextStyles.labelSm(color: CreatorColors.outline)),
-            Text(
-              'Privacy & Terms',
-              style: AppTextStyles.labelSm(color: CreatorColors.primary).copyWith(fontWeight: FontWeight.w700),
+            Expanded(
+              child: Text('CollabConnect v2.4', maxLines: 1, overflow: TextOverflow.ellipsis, style: AppTextStyles.labelSm(color: CreatorColors.outline)),
             ),
+            const SizedBox(width: 8),
+            Text('Privacy & Terms', maxLines: 1, style: AppTextStyles.labelSm(color: CreatorColors.primary).copyWith(fontWeight: FontWeight.w700)),
           ],
         ),
       ],
@@ -56,31 +53,38 @@ class CreatorDrawerLinks extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                Container(
-                  width: 32,
-                  height: 32,
-                  decoration: BoxDecoration(color: CreatorColors.surfaceContainer, borderRadius: BorderRadius.circular(8)),
-                  child: Icon(icon, size: 18, color: CreatorColors.outline),
-                ),
-                const SizedBox(width: 12),
-                Text(title, style: AppTextStyles.bodyLg(color: CreatorColors.onSurface).copyWith(fontWeight: FontWeight.w500)),
-              ],
+            Expanded(
+              child: Row(
+                children: [
+                  Container(
+                    width: 32,
+                    height: 32,
+                    decoration: BoxDecoration(color: CreatorColors.surfaceContainer, borderRadius: BorderRadius.circular(8)),
+                    child: Icon(icon, size: 18, color: CreatorColors.outline),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      title,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTextStyles.bodyLg(color: CreatorColors.onSurface).copyWith(fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ],
+              ),
             ),
+            const SizedBox(width: 8),
             Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 if (badge != null)
                   Container(
                     margin: const EdgeInsets.only(right: 6),
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     decoration: BoxDecoration(color: CreatorColors.primaryFixed, borderRadius: AppRadii.roundedPill),
-                    child: Text(
-                      badge,
-                      style: AppTextStyles.labelSm(color: CreatorColors.onPrimaryFixed).copyWith(fontWeight: FontWeight.w700),
-                    ),
+                    child: Text(badge, style: AppTextStyles.labelSm(color: CreatorColors.onPrimaryFixed).copyWith(fontWeight: FontWeight.w700)),
                   ),
                 const Icon(Icons.chevron_right_rounded, size: 18, color: CreatorColors.outline),
               ],

@@ -43,15 +43,24 @@ class CreatorAuthButton extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Icon(icon, size: 20, color: iconColor),
-                    const SizedBox(width: 12),
-                    Text(text, style: AppTextStyles.labelLg(color: textColor).copyWith(fontWeight: FontWeight.w700)),
-                  ],
+                Expanded(
+                  child: Row(
+                    children: [
+                      Icon(icon, size: 20, color: iconColor),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          text,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppTextStyles.labelLg(color: textColor).copyWith(fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+                const SizedBox(width: 8),
                 Icon(trailing, size: 18, color: iconColor),
               ],
             ),

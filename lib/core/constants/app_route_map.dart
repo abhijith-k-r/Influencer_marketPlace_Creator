@@ -7,6 +7,10 @@ import '../../features/brand/campaigns/presentation/views/brand_campaign_list_sc
 import '../../features/brand/chat/presentation/views/individual_chat_screen.dart';
 import '../../features/creator/messages/views/creator_chat_thread_view.dart';
 import '../../features/creator/navigation/views/creator_navigation_view.dart';
+import '../../features/creator/my_works/views/creator_work_details_view.dart';
+import '../../features/creator/my_works/views/creator_work_filter_view.dart';
+import '../../features/creator/payments/views/creator_payment_details_view.dart';
+import '../../features/creator/payments/views/creator_payment_redeem_view.dart';
 import '../../features/brand/payments/presentation/views/brand_payment_dashboard_screen.dart';
 import '../../features/brand/payments/presentation/views/brand_payment_details_screen.dart';
 import '../../features/brand/payments/presentation/views/brand_payment_filter_screen.dart';
@@ -23,6 +27,10 @@ final Map<String, WidgetBuilder> appRouteMap = {
   AppRoutes.creatorShell: (_) => const CreatorNavigationView(),
   AppRoutes.chatDetail: (_) => const IndividualChatScreen(),
   AppRoutes.creatorChatDetail: (_) => const CreatorChatThreadView(),
+  AppRoutes.creatorPaymentDetails: (_) => const CreatorPaymentDetailsView(),
+  AppRoutes.creatorPaymentRedeem: (_) => const CreatorPaymentRedeemView(),
+  AppRoutes.creatorWorkDetails: (_) => const CreatorWorkDetailsView(),
+  AppRoutes.creatorWorkFilter: (_) => const CreatorWorkFilterView(),
   AppRoutes.auth: (_) => const AuthBottomSheet(),
   AppRoutes.paymentDashboard: (_) => const BrandPaymentDashboardScreen(),
   AppRoutes.paymentDetails: (_) => const BrandPaymentDetailsScreen(),

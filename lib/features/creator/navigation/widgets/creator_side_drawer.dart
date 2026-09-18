@@ -27,12 +27,17 @@ class CreatorSideDrawer extends StatelessWidget {
             children: [
               CreatorDrawerHeader(onClose: onClose),
               const SizedBox(height: 16),
-              const CreatorDrawerActions(),
-              const SizedBox(height: 20),
-              const Expanded(
+              Expanded(
                 child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: CreatorDrawerLinks(),
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      CreatorDrawerActions(),
+                      SizedBox(height: 20),
+                      CreatorDrawerLinks(),
+                    ],
+                  ),
                 ),
               ),
             ],

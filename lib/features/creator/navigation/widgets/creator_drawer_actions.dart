@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/constants/app_routes.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/creator_colors.dart';
-import '../../../auth/presentation/views/auth_bottom_sheet.dart';
+import '../../auth/widgets/creator_auth_bottom_sheet.dart';
 import 'creator_auth_button.dart';
 
 class CreatorDrawerActions extends StatelessWidget {
@@ -21,7 +21,7 @@ class CreatorDrawerActions extends StatelessWidget {
           text: 'Sign Up Free',
           onTap: () {
             Navigator.of(context).pop();
-            AuthBottomSheet.show(context);
+            CreatorAuthBottomSheet.show(context);
           },
           hasShadow: true,
         ),
@@ -35,7 +35,7 @@ class CreatorDrawerActions extends StatelessWidget {
           text: 'Sign In',
           onTap: () {
             Navigator.of(context).pop();
-            AuthBottomSheet.show(context);
+            CreatorAuthBottomSheet.show(context);
           },
         ),
         const SizedBox(height: 10),
@@ -51,9 +51,13 @@ class CreatorDrawerActions extends StatelessWidget {
               children: [
                 const Icon(Icons.swap_horiz_rounded, size: 18, color: CreatorColors.primary),
                 const SizedBox(width: 8),
-                Text(
-                  'Switch to Brand Portal',
-                  style: AppTextStyles.labelMd(color: CreatorColors.primary).copyWith(fontWeight: FontWeight.w700),
+                Expanded(
+                  child: Text(
+                    'Switch to Brand Portal',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyles.labelMd(color: CreatorColors.primary).copyWith(fontWeight: FontWeight.w700),
+                  ),
                 ),
               ],
             ),

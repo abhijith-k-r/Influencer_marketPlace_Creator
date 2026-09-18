@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/brand_bottom_nav_bar.dart';
 import '../../../../core/widgets/brand_side_drawer.dart';
-import '../../../campaigns/presentation/views/brand_campaign_list_screen.dart';
-import '../../../chat/presentation/views/chat_list_screen.dart';
-import '../../../home/presentation/views/brand_home_screen.dart';
-import '../../../payments/presentation/views/brand_payment_dashboard_screen.dart';
-import '../../../profile/presentation/views/brand_profile_screen.dart';
+import '../../../brand/campaigns/presentation/views/brand_campaign_list_screen.dart';
+import '../../../brand/chat/presentation/views/chat_list_screen.dart';
+import '../../../brand/home/presentation/views/brand_home_screen.dart';
+import '../../../brand/payments/presentation/views/brand_payment_dashboard_screen.dart';
+import '../../../brand/profile/presentation/views/brand_profile_screen.dart';
 
 class BrandMainShell extends StatefulWidget {
   final int initialTab;

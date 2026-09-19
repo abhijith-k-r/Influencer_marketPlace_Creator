@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:creator_side/features/creator/home/views/creator_home_view.dart';
-import 'package:creator_side/features/creator/auth/widgets/creator_auth_bottom_sheet.dart';
-import 'package:creator_side/features/creator/navigation/widgets/creator_side_drawer.dart';
+import 'package:creator_side/features/creator/home/presentation/views/creator_home_view.dart';
+import 'package:creator_side/core/widgets/creator/creator_auth_sheet/creator_auth_bottom_sheet.dart';
+import 'package:creator_side/core/widgets/creator/creator_side_drawer.dart';
 
 void main() {
   Widget buildTestWidget() {

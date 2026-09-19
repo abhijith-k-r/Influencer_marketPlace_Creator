@@ -1,5 +1,5 @@
-import 'package:creator_side/features/creator/navigation/views/creator_navigation_view.dart';
-import 'package:creator_side/features/creator/profile/views/creator_profile_view.dart';
+import 'package:creator_side/features/creator/shell/presentation/views/creator_shell_view.dart';
+import 'package:creator_side/features/creator/profile/presentation/views/creator_profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -31,7 +31,7 @@ void main() {
   testWidgets('CreatorNavigationView opens profile tab at index 4', (tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CreatorNavigationView(initialTab: 4),
+        home: CreatorShellView(initialTab: 4),
       ),
     );
     await tester.pumpAndSettle();

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:creator_side/core/widgets/shared/app_scaffold.dart';
+import 'package:creator_side/core/widgets/shared/app_snack_bar.dart';
 import '../../../../../core/constants/app_routes.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../bloc/campaign_bloc.dart';
@@ -17,17 +19,15 @@ class BrandCampaignDetailsScreen extends StatelessWidget {
   const BrandCampaignDetailsScreen({super.key});
 
   void _showToast(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message), duration: const Duration(seconds: 2)),
-    );
+    AppSnackBar.showSuccess(context, message);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AppScaffold(
       backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: BlocBuilder<CampaignBloc, CampaignState>(
+      useSafeArea: true,
+      body: BlocBuilder<CampaignBloc, CampaignState>(
           builder: (context, state) {
             final campaign = state.selectedCampaign ?? MockCampaignData.campaigns.first;
 
@@ -65,7 +65,6 @@ class BrandCampaignDetailsScreen extends StatelessWidget {
             );
           },
         ),
-      ),
     );
   }
 }

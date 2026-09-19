@@ -3,6 +3,7 @@ import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/theme/app_radii.dart';
 import '../../../../../../core/theme/app_text_styles.dart';
 
+/// Milestone info strip with dual flex constraints to guarantee zero overflow (<45 LOC).
 class TransactionMilestoneStrip extends StatelessWidget {
   final String milestoneDescription;
   final String dateText;
@@ -22,19 +23,26 @@ class TransactionMilestoneStrip extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppRadii.lg),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              const Icon(Icons.flag_outlined, size: 14, color: AppColors.tertiary),
-              const SizedBox(width: 6),
-              Text(
-                milestoneDescription,
-                style: AppTextStyles.labelSm(color: AppColors.tertiary),
-              ),
-            ],
+          const Icon(Icons.flag_outlined, size: 14, color: AppColors.tertiary),
+          const SizedBox(width: 6),
+          Expanded(
+            child: Text(
+              milestoneDescription,
+              style: AppTextStyles.labelSm(color: AppColors.tertiary),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
           ),
-          Text(dateText, style: AppTextStyles.bodySm(color: AppColors.tertiary)),
+          const SizedBox(width: 8),
+          Flexible(
+            child: Text(
+              dateText,
+              style: AppTextStyles.bodySm(color: AppColors.tertiary),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
+          ),
         ],
       ),
     );

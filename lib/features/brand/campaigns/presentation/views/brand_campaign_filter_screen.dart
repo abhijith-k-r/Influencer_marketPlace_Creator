@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:creator_side/core/widgets/shared/app_scaffold.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../widgets/filter/campaign_filter_form_body.dart';
 
@@ -7,11 +8,10 @@ class BrandCampaignFilterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return const AppScaffold(
       backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: CampaignFilterFormBody(),
-      ),
+      useSafeArea: true,
+      body: CampaignFilterFormBody(),
     );
   }
 }

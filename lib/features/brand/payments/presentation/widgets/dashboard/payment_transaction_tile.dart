@@ -8,6 +8,7 @@ import 'payment_status_badge.dart';
 import 'transaction_avatar.dart';
 import 'transaction_milestone_strip.dart';
 
+/// Single transaction tile with flex-safe creator/campaign text (<95 LOC).
 class PaymentTransactionTile extends StatelessWidget {
   final PaymentTransactionModel transaction;
   final ValueChanged<PaymentTransactionModel> onTap;
@@ -36,34 +37,47 @@ class PaymentTransactionTile extends StatelessWidget {
         child: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    TransactionAvatar(
-                      avatarUrl: transaction.creatorAvatar,
-                      status: transaction.status,
-                    ),
-                    const SizedBox(width: 12),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
+                Expanded(
+                  child: Row(
+                    children: [
+                      TransactionAvatar(
+                        avatarUrl: transaction.creatorAvatar,
+                        status: transaction.status,
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(transaction.creatorName, style: AppTextStyles.labelLg()),
-                            const SizedBox(width: 4),
-                            const Icon(Icons.verified, size: 14, color: AppColors.secondary),
+                            Row(
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    transaction.creatorName,
+                                    style: AppTextStyles.labelLg(),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                  ),
+                                ),
+                                const SizedBox(width: 4),
+                                const Icon(Icons.verified, size: 14, color: AppColors.secondary),
+                              ],
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              transaction.campaignTitle,
+                              style: AppTextStyles.bodySm(color: AppColors.tertiary),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
                           ],
                         ),
-                        const SizedBox(height: 2),
-                        Text(
-                          transaction.campaignTitle,
-                          style: AppTextStyles.bodySm(color: AppColors.tertiary),
-                        ),
-                      ],
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
+                const SizedBox(width: 8),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [

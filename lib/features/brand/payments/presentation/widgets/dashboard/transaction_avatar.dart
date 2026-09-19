@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../core/widgets/shared/app_network_avatar.dart';
 import '../../../data/models/payment_transaction_model.dart';
 import 'payment_status_badge.dart';
 
+/// Transaction avatar with status orb using global AppNetworkAvatar (<35 LOC).
 class TransactionAvatar extends StatelessWidget {
   final String avatarUrl;
   final PaymentTransactionStatus status;
@@ -17,10 +18,10 @@ class TransactionAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        CircleAvatar(
+        AppNetworkAvatar(
           radius: 22,
-          backgroundColor: AppColors.surfaceContainer,
-          backgroundImage: NetworkImage(avatarUrl),
+          imageUrl: avatarUrl.isNotEmpty ? avatarUrl : null,
+          fallbackIcon: Icons.person_rounded,
         ),
         Positioned(
           bottom: 0,

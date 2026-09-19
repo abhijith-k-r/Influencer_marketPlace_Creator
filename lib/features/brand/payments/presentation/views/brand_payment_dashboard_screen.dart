@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/constants/app_routes.dart';
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/widgets/shared/app_scaffold.dart';
 import '../../bloc/payment_bloc.dart';
 import '../../bloc/payment_event.dart';
 import '../../bloc/payment_state.dart';
@@ -13,80 +14,80 @@ import '../widgets/dashboard/payment_filter_chips_row.dart';
 import '../widgets/dashboard/payment_transaction_tile.dart';
 import '../widgets/dashboard/recent_transactions_header.dart';
 
-class BrandPaymentDashboardScreen extends StatefulWidget {
+/// Pure StatelessWidget for Brand Payment Dashboard screen using AppScaffold (<90 LOC).
+class BrandPaymentDashboardScreen extends StatelessWidget {
   const BrandPaymentDashboardScreen({super.key});
 
-  @override
-  State<BrandPaymentDashboardScreen> createState() =>
-      _BrandPaymentDashboardScreenState();
-}
-
-class _BrandPaymentDashboardScreenState
-    extends State<BrandPaymentDashboardScreen> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<PaymentBloc>().add(const LoadPaymentsEvent());
-  }
-
-  void _onTransactionTap(PaymentTransactionModel tx) {
+  void _onTransactionTap(BuildContext context, PaymentTransactionModel tx) {
     context.read<PaymentBloc>().add(SelectTransactionEvent(tx));
     Navigator.of(context).pushNamed(AppRoutes.paymentDetails);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AppScaffold(
       backgroundColor: AppColors.surface,
-      body: SafeArea(
-        bottom: false,
-        child: BlocBuilder<PaymentBloc, PaymentState>(
-          builder: (context, state) {
-            return CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: PaymentDashboardHeader(
-                    onNotificationTap: () {},
-                    onProfileTap: () {},
-                  ),
+      useSafeArea: true,
+      safeAreaBottom: false,
+      body: BlocBuilder<PaymentBloc, PaymentState>(
+        builder: (context, state) {
+          return CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: PaymentDashboardHeader(
+                  onNotificationTap: () {},
+                  onProfileTap: () {},
                 ),
-                SliverToBoxAdapter(
-                  child: PaymentDashboardOverviewSection(state: state),
+              ),
+              SliverToBoxAdapter(
+                child: PaymentDashboardOverviewSection(state: state),
+              ),
+              SliverToBoxAdapter(
+                child: PaymentFilterChipsRow(
+                  activeFilter: state.activeQuickFilter,
+                  onFilterSelected: (f) => context
+                      .read<PaymentBloc>()
+                      .add(QuickFilterSelectedEvent(f)),
                 ),
-                SliverToBoxAdapter(
-                  child: PaymentFilterChipsRow(
-                    activeFilter: state.activeQuickFilter,
-                    onFilterSelected: (f) => context
-                        .read<PaymentBloc>()
-                        .add(QuickFilterSelectedEvent(f)),
-                    onExportTap: () {},
-                  ),
+              ),
+              SliverToBoxAdapter(
+                child: RecentTransactionsHeader(
+                  totalCount: state.transactions.length,
+                  onViewLedgerTap: () => Navigator.of(context)
+                      .pushNamed(AppRoutes.paymentFilter),
                 ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 16, bottom: 8),
-                    child: RecentTransactionsHeader(
-                      totalCount: state.transactions.length,
-                      onViewLedgerTap: () => Navigator.of(context)
-                          .pushNamed(AppRoutes.paymentFilter),
-                    ),
-                  ),
-                ),
-                SliverList(
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                sliver: SliverList(
                   delegate: SliverChildBuilderDelegate(
-                    (context, i) => PaymentTransactionTile(
-                      transaction: state.transactions[i],
-                      onTap: _onTransactionTap,
-                    ),
+                    (context, index) {
+                      final tx = state.transactions[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: PaymentTransactionTile(
+                          transaction: tx,
+                          onTap: (t) => _onTransactionTap(context, t),
+                        ),
+                      );
+                    },
                     childCount: state.transactions.length,
                   ),
                 ),
-                SliverToBoxAdapter(child: LoadOlderRecordsButton(onTap: () {})),
-                const SliverToBoxAdapter(child: SizedBox(height: 80)),
-              ],
-            );
-          },
-        ),
+              ),
+              SliverToBoxAdapter(
+                child: LoadOlderRecordsButton(
+                  onTap: () => context
+                      .read<PaymentBloc>()
+                      .add(const LoadMorePaymentsEvent()),
+                ),
+              ),
+              const SliverToBoxAdapter(
+                child: SizedBox(height: 32.0),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

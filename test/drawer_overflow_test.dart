@@ -1,5 +1,5 @@
-import 'package:creator_side/core/widgets/brand_side_drawer.dart';
-import 'package:creator_side/features/creator/navigation/widgets/creator_side_drawer.dart';
+import 'package:creator_side/core/widgets/brand/brand_side_drawer.dart';
+import 'package:creator_side/core/widgets/creator/creator_side_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:creator_side/core/constants/app_route_map.dart';
-import 'package:creator_side/features/creator/payments/views/creator_payment_details_view.dart';
-import 'package:creator_side/features/creator/payments/views/creator_payment_redeem_view.dart';
-import 'package:creator_side/features/creator/payments/views/creator_payments_view.dart';
-import 'package:creator_side/features/creator/payments/widgets/dashboard/creator_campaign_earning_card.dart';
+import 'package:creator_side/features/creator/payments/presentation/views/creator_payment_details_view.dart';
+import 'package:creator_side/features/creator/payments/presentation/views/creator_payment_redeem_view.dart';
+import 'package:creator_side/features/creator/payments/presentation/views/creator_payments_view.dart';
+import 'package:creator_side/features/creator/payments/presentation/widgets/dashboard/creator_campaign_earning_card.dart';
 
 void main() {
   Widget buildTestableWidget(Widget child) {
@@ -24,9 +24,9 @@ void main() {
     await tester.pump();
 
     expect(find.text('Studio'), findsOneWidget);
-    expect(find.text('PAYMENT'), findsOneWidget);
+    expect(find.text('Payment'), findsOneWidget);
     expect(find.text('BALANCE OVERVIEW'), findsOneWidget);
-    expect(find.text('Total Earnings'), findsOneWidget);
+    expect(find.text('TOTAL EARNINGS'), findsOneWidget);
     expect(find.text('All Campaigns'), findsOneWidget);
     expect(find.byType(CreatorCampaignEarningCard), findsWidgets);
 
@@ -61,7 +61,7 @@ void main() {
     await tester.pump();
 
     expect(find.text('Redeem Milestone Payout'), findsOneWidget);
-    expect(find.text('Amount to Redeem'), findsOneWidget);
+    expect(find.text('AMOUNT READY TO DISBURSE'), findsOneWidget);
     expect(find.text('₹2,000.00'), findsWidgets);
     expect(find.text('Destination Account'), findsOneWidget);
     expect(find.text('Payout Summary'), findsOneWidget);

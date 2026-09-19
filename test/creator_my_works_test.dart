@@ -1,7 +1,7 @@
 import 'package:creator_side/core/constants/app_routes.dart';
-import 'package:creator_side/features/creator/my_works/views/creator_work_details_view.dart';
-import 'package:creator_side/features/creator/my_works/views/creator_work_filter_view.dart';
-import 'package:creator_side/features/creator/my_works/views/my_works_view.dart';
+import 'package:creator_side/features/creator/my_works/presentation/views/creator_work_details_view.dart';
+import 'package:creator_side/features/creator/my_works/presentation/views/creator_work_filter_view.dart';
+import 'package:creator_side/features/creator/my_works/presentation/views/my_works_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 

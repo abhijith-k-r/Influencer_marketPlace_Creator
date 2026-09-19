@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:creator_side/core/widgets/shared/app_scaffold.dart';
+import 'package:creator_side/core/widgets/shared/app_snack_bar.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../bloc/payment_bloc.dart';
 import '../../bloc/payment_state.dart';
@@ -16,21 +18,15 @@ class BrandPaymentDetailsScreen extends StatelessWidget {
   const BrandPaymentDetailsScreen({super.key});
 
   void _showToast(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        duration: const Duration(seconds: 2),
-        behavior: SnackBarBehavior.floating,
-      ),
-    );
+    AppSnackBar.showSuccess(context, message);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AppScaffold(
       backgroundColor: AppColors.surface,
-      body: SafeArea(
-        child: BlocBuilder<PaymentBloc, PaymentState>(
+      useSafeArea: true,
+      body: BlocBuilder<PaymentBloc, PaymentState>(
           builder: (context, state) {
             final tx = state.selectedTransaction ??
                 MockPaymentData.transactions.first;
@@ -90,7 +86,6 @@ class BrandPaymentDetailsScreen extends StatelessWidget {
             );
           },
         ),
-      ),
     );
   }
 }

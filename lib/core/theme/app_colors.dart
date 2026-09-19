@@ -67,6 +67,8 @@ abstract final class AppColors {
   static const Color onError = Color(0xFFFFFFFF);
   static const Color onErrorContainer = Color(0xFF93000A);
   static const Color emerald = Color(0xFF10B981);
+  static const Color rose = Color(0xFFF43F5E);
+  static const Color amber = Color(0xFFF59E0B);
 
   // Gradients matching HTML
   static const LinearGradient splashGradient = LinearGradient(

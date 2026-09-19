@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:creator_side/core/widgets/shared/app_scaffold.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/theme/app_text_styles.dart';
 import '../widgets/creation/campaign_creation_form_body.dart';
@@ -8,7 +9,7 @@ class BrandCampaignCreationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AppScaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
         title: Text('Create Campaign', style: AppTextStyles.headlineSm()),

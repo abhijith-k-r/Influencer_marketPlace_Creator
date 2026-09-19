@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/theme/app_text_styles.dart';
+import '../../../../../../core/widgets/shared/app_icon_button.dart';
+import '../../../../../../core/widgets/shared/app_network_avatar.dart';
 
+/// Top bar header for Brand Payment Dashboard using AppIconButton and AppNetworkAvatar (<75 LOC).
 class PaymentDashboardHeader extends StatelessWidget {
   final VoidCallback? onNotificationTap;
   final VoidCallback? onProfileTap;
@@ -50,23 +53,16 @@ class PaymentDashboardHeader extends StatelessWidget {
           ),
           Row(
             children: [
-              IconButton(
-                onPressed: onNotificationTap,
-                icon: const Icon(Icons.notifications_outlined, size: 20),
-                style: IconButton.styleFrom(
-                  backgroundColor: AppColors.surfaceContainer,
-                  foregroundColor: AppColors.onSurface,
-                  minimumSize: const Size(40, 40),
-                ),
+              AppIconButton(
+                icon: Icons.notifications_outlined,
+                iconSize: 20,
+                onTap: onNotificationTap,
               ),
               const SizedBox(width: 8),
-              GestureDetector(
+              AppNetworkAvatar(
+                radius: 16,
+                fallbackIcon: Icons.person,
                 onTap: onProfileTap,
-                child: const CircleAvatar(
-                  radius: 16,
-                  backgroundColor: AppColors.primary,
-                  child: Icon(Icons.person, size: 18, color: Colors.white),
-                ),
               ),
             ],
           ),
